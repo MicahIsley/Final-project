@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	    <script>
+	      moment().format();
+	    </script>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body onload="init();">
+		<div class="container">
+			<div class="row">
+				<h1>This is our Project!!!!</h1>
+			</div>
+			<div class="row" id="animalArea">
+				<div class="row" id="animalStats">
+					<div class="col-sm-4" id="animalTitle">
+						<h2>Dragon</h2>
+							<p>Lvl.1 Spicy</p>
+					</div>
+					<div class="col-sm-4">
+						<div id="hungerMeter">
+							<div id="hungerMeterFill"></div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div id="options"><span class="glyphicon glyphicon-cog"></span></div>
+					</div>
+				</div>
+				<div class="row" id="animalThoughtBubble">
+				</div>
+				<div class="row">
+					<div class="col-sm-4" id="itemSection">
+						<div class="row" id="itemSlotRow">
+							<div class="itemSlot" id="itemSlot0"></div>
+							<div class="itemSlot" id="itemSlot1"></div>
+							<div class="itemSlot" id="itemSlot2"></div>
+							<div class="itemSlot" id="itemSlot3"></div>
+							<div class="itemSlot" id="itemSlot4"></div>
+							<div class="hideButton"></div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<canvas id="canvasDiv" width="370" height="400"></canvas>
+					</div>	
+				</div>
+				<div class="row" id="actionButtonsRow">
+					<div class="actionButton" id="food">Food</div>
+					<div class="actionButton" id="play">Play</div>
+					<div class="actionButton" id="train">Train</div>
+					<div class="actionButton" id="trade">Trade</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<script type="text/javascript" src="javascript/logic.js"></script>
+</html>	
