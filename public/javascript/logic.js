@@ -20,6 +20,7 @@ var carrot = new foodItem(40, "crunchy");
 var cupcake = new foodItem(80, "sweet");
 var steak = new foodItem(100, "chewy");
 var username = "test";
+var optionMenuToggle = true;
 
 moment().format();
 
@@ -62,22 +63,58 @@ function adjustHungerMeter() {
 
 // Game Buttons
 
+$("#options").click(function(){
+	if(optionMenuToggle === true){
+		$("#menuOptions").show()
+		optionMenuToggle = false;
+	}else if(optionMenuToggle === false){
+		$("#menuOptions").hide();
+		optionMenuToggle = true;
+	}
+});
+
 $("#food").click(function(){
-	//spicyDragon.feed();
+	renderFoodItems();
+});
+
+$(document).on("click", ".itemIcon", function(){
+	var foodItemQuantity = $(this).attr("id");
+	var splitId = foodItemQuantity.split("/");
+	var newQuantity = splitId[1] -1;
+	spicyDragon.feed(splitId[0]);
+	console.log(spicyDragon.hunger);
+	var changeQuantity = {
+		username: "test",
+		item: splitId[0],
+		quantity: newQuantity}
+	$.ajax({
+		method: "PUT",
+		url: "/api/test/" + splitId[0],
+		data: changeQuantity
+	})
+	.done(function() {
+		renderFoodItems();
+	});
+});
+
+function renderFoodItems(){
 	$("#itemSlotRow").show();
 	for(i=0; i < 5; i++){
 		$("#itemSlot" + i).empty();
 	}
 	$.get("api/" + username + "/items", function(data) {
 		for(i=0; i < data.length; i++){
-			console.log(i);
-			console.log(data[i].item);
 			var div = $("<div>");
-			div.append("<img class='itemIcon' src='/images/" + data[i].item + ".png' alt='Responsive image'>");
+			div.append("<img class='itemIcon' id='" + data[i].item + "/" + data[i].quantity + "' src='/images/" + data[i].item + ".png' alt='Responsive image'>");
 			div.append("<span>" + data[i].quantity + "</span>");
 			$("#itemSlot" + i).append(div);
 		}
 	});
+}
+
+$(".hideButton").click(function(){
+	var hideThis = $(this).parent().attr("id");
+	$("#" + hideThis).hide();
 });
 
 // Spirit Animal constructor
@@ -88,9 +125,22 @@ function SpiritAnimal(hunger, sleep, bored, intelligence, happiness){
 	this.bored = bored;
 	this.intelligence = intelligence;
 
-	this.feed = function(){
+	this.feed = function(food){
 		if(this.hunger < 140){
-			this.hunger += 100;
+			switch (food) {
+				case "apple":
+					this.hunger += 40;
+					break;
+				case "carrot":
+					this.hunger += 30;
+					break;
+				case "cupcake":
+					this.hunger += 60;
+					break;
+				case "steak":
+					this.hunger += 90;
+					break;
+			}
 			console.log(" Delicious! New hunger level: " + this.hunger);
 			$("#animalThoughtBubble").text("Thank you!");
 			clearThoughtBubble();

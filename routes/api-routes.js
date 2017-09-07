@@ -10,4 +10,17 @@ module.exports = function(app) {
 			res.json(results);
 		});
 	});
+
+	app.put("/api/:username/:item", function(req, res) {
+		Items.update({
+			quantity: req.body.quantity
+		}, {
+			where: {
+				username: req.body.username,
+				item: req.body.item
+			}
+		}).then(function(result) {
+			res.json(result);
+		});
+	});
 };
