@@ -172,14 +172,6 @@ function foodItem(energy, flavor){
 
 // Spirit Animal Animation
 
-var canvas;
-var stage;
-var rRotation = -.5;
-var lRotation = .5;
-var dragonHead = 1;
-var resourcesLoaded = 0;
-var totalResources = 4;
-var images = {};
 canvas = document.getElementById("canvasDiv");
 
 function init() {
