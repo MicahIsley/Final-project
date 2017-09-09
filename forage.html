@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	    <script>
+	      moment().format();
+	    </script>
+		<link rel="stylesheet" type="text/css" href="css/forage.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<h2>Find food in the wild!</h2>
+			</div>
+			<div id="forageArea">
+				<div class="row bushRow">
+					<div class="col-sm-2">
+						<div class="itemBush" id="1"></div>
+						<div class="hiddenItem" id="item1"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="itemBush" id="2"></div>
+						<div class="hiddenItem" id="item2"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="itemBush" id="3"></div>
+						<div class="hiddenItem" id="item3"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="itemBush" id="4"></div>
+						<div class="hiddenItem" id="item4"></div>
+					</div>
+				</div>
+				<div class="row bushRow">
+					<div class="col-sm-2">
+						<div class="itemBush" id="5"></div>
+						<div class="hiddenItem" id="item5"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="itemBush" id="6"></div>
+						<div class="hiddenItem" id="item6"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="itemBush" id="7"></div>
+						<div class="hiddenItem" id="item7"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="itemBush" id="8"></div>
+						<div class="hiddenItem" id="item8"></div>
+					</div>
+				</div>
+				<div class="row bushRow">
+					<div class="col-sm-2">
+						<div class="itemBush" id="9"></div>
+						<div class="hiddenItem" id="item9"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="itemBush" id="10"></div>
+						<div class="hiddenItem" id="item10"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="itemBush" id="11"></div>
+						<div class="hiddenItem" id="item11"></div>
+					</div>
+					<div class="col-sm-2">
+						<div class="itemBush" id="12"></div>
+						<div class="hiddenItem" id="item12"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="forageConclusion">
+				<div>Your forage is over!</div>
+				<div>You found: </div>
+					<div id="foundItems">
+						<ul id="foundItemList">
+						</ul>
+					</div>
+			</div>
+		</div>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<script type="text/javascript" src="javascript/forage.js"></script>
+</html>

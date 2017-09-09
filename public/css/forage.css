@@ -1,0 +1,23 @@
+.itemBush {
+	background: green;
+	height: 80px;
+	width: 80px;
+}
+
+.hiddenItem {
+	background: orange;
+	height: 80px;
+	width: 80px;
+	display: none;
+	text-align: center;
+	padding-top: 30px;
+	font-size: 18px;
+}
+
+.bushRow {
+	margin-bottom: 60px;
+}
+
+#forageConclusion {
+	display: none;
+}
