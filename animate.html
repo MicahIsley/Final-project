@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+</head>
+<body>
+<style type = "text/css">
+
+#walk {
+	 background:url(cat.png);
+	 width: 325px;
+	 height: 307px;
+	 
+}
+
+ @-webkit-keyframes walk-east{
+
+     0% {background-position: 0px; }
+     100% {background-position: -1024px; }
+}
+ @keyframes walk-east {
+
+     0% {background-position: 0px; }
+     100% {background-position: -1024px; }
+
+ }
+ 
+
+</style>
+<div id ="walk"></div>
+<div id ="stopwalk"></div>
+
+<button id= "startbtn">Start</button>
+<button id= "stopbtn">Stop</button>
+
+
+<script>
+
+ $("#startbtn").click(function(){
+ 
+  walk.style.animation = "walk-east 2.0s steps(3) infinite";
+
+});
+ 
+ $("#stopbtn").click(function(){
+ 	console.log("hi im stopping");
+ 	walk.style.animation = "paused";
+     
+});
+
+
+
+
+ (function($) {
+  $(function() {
+   $("stopwalk").click(function() {
+   	
+
+
+    $("stopbtn").addClass("off");
+
+   	});
+   });
+  }
+  	)
+ 
+  
+// $("#stopbtn").click(function(){
+//         $("#walk-east 2.0s steps(3) infinite").stop();
+//     });
+
+ // $("#stopbtn").click(function(){
+ //   // walk.style.animation = "walk-east 2.0s steps(3) infinite";
+ //   walk.style.animation = "walk-east 0.0s steps(0) infinite";
+
+
+ // });
+ </script>
+
+
+</body>
+</html>
