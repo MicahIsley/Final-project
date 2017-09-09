@@ -20,7 +20,9 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 //need sessions to persist state of user
 app.use(session({
   secret: '3or8h1o2h1o28u12o38j12',
-  resave: false,
+  name: 'kaas',
+  proxy: true,
+  resave: true,
   saveUninitialized: true
 }));
 
