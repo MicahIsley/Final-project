@@ -1,0 +1,59 @@
+body {
+        background-color: green;
+        font-family: 'Rokkitt', serif;
+        background-image: url(https://photo.designxel.com/static/vector/2015/4/20/facegfx-vector-25-animal-avatar-icon-vector.jpg);        
+        height: 100%;
+        width: 100%;
+        background-color: #d4d4d4;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+}
+
+.content {
+    background-color: white;
+    padding: 10px;
+}
+
+.select {
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a,
+a:hover {
+    color: black;
+}
+
+.one {
+    font-weight: bold;
+    color: #4b2426;
+    font-family: 'Waiting for the Sunrise', cursive;
+}
+
+.two {
+    font-weight: bold;
+    color: #4b2426;
+    font-family: 'Waiting for the Sunrise', cursive;
+}
+
+.footer {
+    padding: 10px;
+            color: #4b2426;
+}
+
+    .btn {
+    background-color: #4b2426;
+    border: none;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #5c2c2f;
+}
