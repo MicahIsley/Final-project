@@ -1,5 +1,10 @@
 .itemBush {
-	background: green;
+	background: transparent;
+	height: 80px;
+	width: 80px;
+}
+
+img {
 	height: 80px;
 	width: 80px;
 }

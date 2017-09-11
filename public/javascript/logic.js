@@ -63,6 +63,28 @@ function adjustHungerMeter() {
 
 // Game Buttons
 
+$("#signIn").click(function(){
+	$("#buttons").hide();
+	$("#login").show();
+});
+
+$("#closeLoginWindow").click(function(){
+	$("#buttons").show();
+	$("#login").hide();
+});
+
+$("#signInFormButton").click(function(){
+	console.log("clicked");
+	var username = $("#username").val().trim();
+	var password = $("#password").val().trim();
+	console.log(username, password);
+	var dataUsername;
+	var dataPassword;
+	$.get("/api/login/" + username + "/" + password, function(data) {
+		
+	});
+});
+
 $("#options").click(function(){
 	if(optionMenuToggle === true){
 		$("#menuOptions").show()

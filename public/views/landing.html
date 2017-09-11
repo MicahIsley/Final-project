@@ -6,43 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Spirit Animal Quiz</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/landingcss/landingstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/landingstyle.css">
    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan" rel="stylesheet">
 </head>
    <body>
       <!-- Background Carousel -->
       <div id="background-carousel">
-         <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
             <div class="carousel-inner">
-          <div class="item active" style="background-image:url(assets/landingimages/pexels-photo-302304.jpeg)"></div>
-               <div class="item" style="background-image:url(assets/landingimages/wolf-torque-wolf-moon-cloud-45242.jpeg)"></div>
-               <div class="item" style="background-image:url(assets/landingimages/pexels-photo-236636.jpeg)"></div>
-               <div class="item" style="background-image:url(assets/landingimages/lion-wild-africa-african.jpg)"></div>
+              <div class="item active" style="background-image:url(images/pexels-photo-302304.jpeg)"></div>
+              <div class="item" style="background-image:url(images/wolf-torque-wolf-moon-cloud-45242.jpeg)"></div>
+              <div class="item" style="background-image:url(images/pexels-photo-236636.jpeg)"></div>
+              <div class="item" style="background-image:url(images/lion-wild-africa-african.jpg)"></div>
             </div>
-         </div>
+        </div>
       </div>
 
-<!--  <body class="bg"> -->
+    <div class="container">
+      <div class="row">
+        <div class="jumbotron" id="tagLine">
+          <h1 class="text-center animation-target" id="titleLine">What's Your Spirit Animal</h1>
+        </div>
+      </div>
 
-<div class="container">
-    <div class="jumbotron" id="tagLine">
-      <h1 class="text-center animation-target" id="titleLine">What's Your Spirit Animal</h1>
+      <div class="row">
+        <div id=buttons>
+          <button class="btn btn-success submit" id="signIn" type="submit">Sign In!</button>
+          <a href="/survey"><button class="btn btn-success submit" id="signUp" type="submit">Sign Up!</button></a>
+        </div>
+        <div id="login">
+          <div class="row">
+            <div class="col-sm-2">
+              <div>Userame</div>
+            </div>
+            <div class="col-sm-1 col-sm-offset-8">
+              <div id="closeLoginWindow">X</div>
+            </div>
+          </div>
+            <input class="form-control" type="text" value="" id="username">
+          <div>Password</div>
+            <input class="form-control" type="text" value="" id="password">
+          <button class="btn btn-success submit" id="signInFormButton" type="submit">Sign In!</button>
+        </div>
+      </div>
+
+
+      <Footer> &copy; 2017 Spirit Animal</Footer>
     </div>
-
- 
-<div id=buttons>
- <button class="btn btn-success" id="submit" type="submit">Sign In!</button>
-<button class="btn btn-success" id="submit" type="submit">Sign Up!</button>
-</div>
-
-
-    <Footer> &copy; 2017 Spirit Animal
-    </Footer>
-  </div>
-</div>
-
+  </body>
   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script>
+    moment().format();
+  </script>
+  <script type="text/javascript" src="javascript/logic.js"></script>
 
 </html>

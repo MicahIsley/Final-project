@@ -11,26 +11,14 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
-      role: {
+      password: {
+        type: Sequelize.TEXT
+      },
+      photo: {
+        type: Sequelize.TEXT
+      },
+      location: {
         type: Sequelize.STRING
-      },
-      profilePicUrl: {
-        type: Sequelize.TEXT
-      },
-      email: {
-        type: Sequelize.STRING
-      },
-      accessToken: {
-        type: Sequelize.TEXT
-      },
-      refreshToken: {
-        type: Sequelize.TEXT
-      },
-      googleId: {
-        type: Sequelize.TEXT
-      },
-      companyToken: {
-        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

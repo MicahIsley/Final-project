@@ -5,15 +5,19 @@ module.exports = function(app) {
 		res.sendFile(path.join(__dirname + "/../public/views/landing.html"));
 	});
 
+	app.get("/animalHome", function(req, res) {
+		res.sendFile(path.join(__dirname + "/../public/views/animalHome.html"));
+	});
+
 	app.get("/forage", function(req, res) {
-		res.sendFile(path.join(__dirname + "/../forage.html"));
+		res.sendFile(path.join(__dirname + "/../public/views/forage.html"));
 	});
 
 	app.get("/survey", function(req, res) {
-		res.sendFile(path.join(__dirname + "/../public/survey.html"));
+		res.sendFile(path.join(__dirname + "/../public/views/survey.html"));
 	});
 
 	app.get("/training", function(req, res) {
-		res.sendFile(path.join(__dirname + "/../training.html"));
+		res.sendFile(path.join(__dirname + "/../views/training.html"));
 	});
 };
