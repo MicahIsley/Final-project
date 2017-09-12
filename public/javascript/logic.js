@@ -9,7 +9,7 @@ var dragonHead = 1;
 var resourcesLoaded = 0;
 var totalResources;
 var images = {};
-var spirit = "seal";
+var spirit = "dragon";
 
 //Game variables
 var hungryTime;

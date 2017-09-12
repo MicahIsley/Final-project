@@ -1,6 +1,17 @@
+body {
+	background: #4a300f;
+}
+
+#mainTitle {
+	color: white;
+	text-align: center;
+	font-stretch: expanded;
+}
 #animalArea {
 	background: url("http://www.misucell.com/data/out/9/IMG_359630.png");
 	background: lightgrey;
+	background: url("https://wallpapercave.com/wp/NRZITrZ.jpg");
+	background-position: 20% 50%;
 }
 
 #actionButtonsRow {
@@ -24,12 +35,22 @@
 	border-width: 3px;
 }
 
+.actionButton:hover {
+	color: white;
+	border-color: white;
+}
+
 #animalThoughtBubble {
 	background: white;
+	border-color: black;
+	border-width: 1px;
+	border-style: solid;
 	border-radius: 5px;
 	height: 50px;
 	width: 260px;
 	margin-left: 36%;
+	text-align: center;
+	font-size: 18px;
 }
 
 #spiritAnimal {
@@ -96,6 +117,7 @@
 }
 
 .itemSlot {
+	background: white;
 	height: 65px;
 	width: 65px;
 	border-style: solid;
@@ -121,6 +143,15 @@
 	margin-right: 0px;
 	float: right;
 	display: none;
+}
+
+#energyTitle {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.singleOption {
+	font-weight: bold;
 }
 
 .singleOption:hover {
