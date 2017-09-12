@@ -14,6 +14,16 @@ module.exports = function(app) {
 		});
 	});
 
+	app.get("/api/spiritAnimal/:username", function(req, res) {
+		User.findOne({
+			where: {
+				username: req.params.username
+			}
+		}).then(function(results) {
+			res.json(results);
+		});
+	});
+
 	app.put("/api/:username/:item", function(req, res) {
 		Items.update({
 			quantity: req.body.quantity
@@ -32,6 +42,20 @@ module.exports = function(app) {
 			username: req.body.username,
 			q1: req.body.q1, q2: req.body.q2, q3: req.body.q3, q4: req.body.q4, q5: req.body.q5,
 			q6: req.body.q6, q7: req.body.q7, q8: req.body.q8, q9: req.body.q9, q10: req.body.q10
+		}).then(function(results) {
+			res.json(results);
+		});
+	});
+
+	app.put("/api/assignSpiritAnimal/", function(req, res) {
+		User.update({
+			animal: req.body.animal
+		}, {
+			where: {
+				username: req.body.username
+			}
+		}).then(function(result) {
+			res.json(result);
 		});
 	});
 
@@ -47,4 +71,14 @@ module.exports = function(app) {
 			} else{}
 		});
 	});
+
+	app.get("/login", function(req, res) {
+
+	});
+	
+	app.post("/login",
+		passport.authenticate("local", { failureRedirect: "/login" }),
+		function(req, res) {
+			res.redirect("/");
+		});
 };

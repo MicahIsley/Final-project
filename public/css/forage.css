@@ -1,3 +1,28 @@
+html {
+	background: darkgreen;
+}
+
+#gameScreen {
+	background: tan;
+	height: 600px;
+	width: 100%;
+	margin-top: 100px;
+	padding-top: 20px;
+}
+
+#forageArea {
+	margin-top: 50px;
+}
+
+#forageTitle {
+	font-size: 36px;
+	text-align: center;
+}
+
+#forageDescription {
+	text-align: center;
+}
+
 .itemBush {
 	background: transparent;
 	height: 80px;
@@ -10,12 +35,11 @@ img {
 }
 
 .hiddenItem {
-	background: orange;
+
 	height: 80px;
 	width: 80px;
 	display: none;
 	text-align: center;
-	padding-top: 30px;
 	font-size: 18px;
 }
 
@@ -24,5 +48,47 @@ img {
 }
 
 #forageConclusion {
+	height: 250px;
+	border-radius: 20px;
+	border-color: black;
+	border-style: solid;
+	border-width: 3px;
+	text-align: center;
+	font-size: 24px;
+	margin-top: 30px;
 	display: none;
+}
+
+#foundItemList {
+	text-align: left;
+	margin-left: 140px;
+	margin-top: 10px;
+}
+
+#guessesLeftDiv {
+	background: white;
+	border-color: black;
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 20px;
+	text-align: center;
+}
+
+#numberRemaining {
+	font-size: 20px;
+}
+
+#returnButton {
+	height: 50px;
+	width: 75px;
+	background: green;
+	border-radius: 20px;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+	padding-top: 10px;
+}
+
+#returnButton:hover {
+	color: blue;
 }

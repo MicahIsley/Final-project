@@ -8,14 +8,16 @@ var steak;
 var username = "test";
 var currentQuantity;
 
+
 $(".itemBush").click(function(){
 	if(guessesLeft > 0){
 		var thisBush = $(this).attr("id");
 		$("#" + thisBush).hide();
 		$("#item" + thisBush).show();
-		var foundItem = $("#item" + thisBush).text();
+		var foundItem = $("#item" + thisBush).children().attr("class");
 		foundItemArray.push(foundItem);
 		guessesLeft -= 1;
+		displayNumberGuesses();
 		if(guessesLeft === 0){
 			setTimeout(function(){
 				$("#forageArea").hide();
@@ -30,7 +32,8 @@ function randomizeItems() {
 	for(i=1; i < 13; i++){
 		var randomNumber = Math.floor(Math.random() * 7);
 		var randomItem = randomItemsArray[randomNumber];
-		$("#item" + i).text(randomItem);
+		console.log("<img src='" + randomItem + ".png'>");
+		$("#item" + i).append("<img src='images/" + randomItem + ".png' class='" + randomItem + "'>");
 	}
 }
 
@@ -80,5 +83,10 @@ function getItemQuantity(){
 	});
 }
 
+function displayNumberGuesses() {
+	$("#numberRemaining").text(guessesLeft);
+}
+
+displayNumberGuesses();
 randomizeItems();
 getItemQuantity();

@@ -43,6 +43,30 @@ a:hover {
     font-family: 'Waiting for the Sunrise', cursive;
 }
 
+#meetYourSpiritAnimal {
+    height: 200px;
+    text-align: center;
+    background: tan;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    border-radius: 25px;
+    margin-top: 200px;
+    display: none;
+}
+
+#goButton {
+    background: green;
+    width: 55px;
+    height: 55px;
+    text-align: center;
+    margin-left: 40%;
+    padding-top: 12px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
 .footer {
     padding: 10px;
             color: #4b2426;

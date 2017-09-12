@@ -20,6 +20,9 @@ module.exports = {
       location: {
         type: Sequelize.STRING
       },
+      animal: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -11,7 +11,7 @@
 	    </script>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
-	<body onload="init();">
+	<body>
 		<div class="container">
 			<div class="row">
 				<h1>This is our Project!!!!</h1>
@@ -50,15 +50,15 @@
 							<div class="hideButton"><span class="glyphicon glyphicon-chevron-down"></span></div>
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<canvas id="canvasDiv" width="370" height="400"></canvas>
+					<div class="col-sm-6" id="body">
+						<canvas id="canvasDiv" width="400" height="400"></canvas>
 					</div>	
 				</div>
 				<div class="row" id="actionButtonsRow">
 					<div class="actionButton" id="food">Food</div>
 					<div class="actionButton" id="play">Play</div>
-					<a href="./forage"><div class="actionButton" id="train">Train</div></a>
-					<a href="/auth/provider"><div class="actionButton" id="trade">Trade</div></a>
+					<a href="./forage"><div class="actionButton" id="forage">Forage</div></a>
+					<div class="actionButton" id="trade">Trade</div>
 				</div>
 			</div>
 		</div>

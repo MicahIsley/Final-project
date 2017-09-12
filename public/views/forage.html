@@ -11,18 +11,30 @@
 		<link rel="stylesheet" type="text/css" href="css/forage.css">
 	</head>
 	<body>
-		<div class="container">
+		<div class="container" id="gameScreen">
 			<div class="row">
-				<h2>Find food in the wild!</h2>
+				<div class="col-sm-1 col-sm-offset-1">
+					<a href="/animalHome"><div id="returnButton">Return</div></a>
+				</div>
+				<div class="col-sm-4 col-sm-offset-1">
+					<h2 id="forageTitle">Forage For Food</h2>
+					<h4 id="forageDescription">Click on a bush and see what's inside!</h4>
+				</div>
+				<div class="col-sm-2">
+					<div id="guessesLeftDiv">
+						<h3>Selections Remaining</h2>
+						<span id="numberRemaining"></span>
+					</div>
+				</div>
 			</div>
 			<div id="forageArea">
 				<div class="row bushRow">
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-sm-offset-2">
 						<div class="itemBush" id="1"><img src="images/bush.png"></div>
 						<div class="hiddenItem" id="item1"></div>
 					</div>
 					<div class="col-sm-2">
-						<div class="itemBush" id="2"><img src="images/bush2.png"></div>
+						<div class="itemBush" id="2"><img src="images/bush.png"></div>
 						<div class="hiddenItem" id="item2"></div>
 					</div>
 					<div class="col-sm-2">
@@ -32,10 +44,10 @@
 					<div class="col-sm-2">
 						<div class="itemBush" id="4"><img src="images/bush2.png"></div>
 						<div class="hiddenItem" id="item4"></div>
-					</div>
+					</div>	
 				</div>
 				<div class="row bushRow">
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-sm-offset-2">
 						<div class="itemBush" id="5"><img src="images/bush3.png"></div>
 						<div class="hiddenItem" id="item5"></div>
 					</div>
@@ -53,7 +65,7 @@
 					</div>
 				</div>
 				<div class="row bushRow">
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-sm-offset-2">
 						<div class="itemBush" id="9"><img src="images/bush.png"></div>
 						<div class="hiddenItem" id="item9"></div>
 					</div>
@@ -71,13 +83,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="row" id="forageConclusion">
-				<div>Your forage is over!</div>
-				<div>You found: </div>
-					<div id="foundItems">
-						<ul id="foundItemList">
-						</ul>
-					</div>
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-3" id="forageConclusion">
+					<div>Your forage is over!</div>
+					<div>You found: </div>
+						<div id="foundItems">
+							<ul id="foundItemList">
+							</ul>
+						</div>
+				</div>
 			</div>
 		</div>
 	</body>

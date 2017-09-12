@@ -7,8 +7,9 @@ var rRotation = -.5;
 var lRotation = .5;
 var dragonHead = 1;
 var resourcesLoaded = 0;
-var totalResources = 4;
+var totalResources;
 var images = {};
+var spirit = "seal";
 
 //Game variables
 var hungryTime;
@@ -193,19 +194,68 @@ function foodItem(energy, flavor){
 }
 
 // Spirit Animal Animation
+$(document).ready(function(){
+	init(spirit);
+});
 
 canvas = document.getElementById("canvasDiv");
 
-function init() {
+function init(spirit) {
 	stage = new createjs.Stage(canvas);
-	loadImage("dragon-rwing4");
-	loadImage("dragon-lwing4");
-	loadImage("dragon-body4");
-	loadImage("dragon-head4");
+	switch (spirit) {
+		case "dragon":
+			loadSpicyDragon();
+			break;
+		case "dino":
+			loadSourDino();
+			break;
+		case "monkey":
+			loadMangoMonkey();
+			break;
+		case "seal":
+			loadCocoSeal();
+			break;
+	}
+}
+
+function loadSpicyDragon(){
+	totalResources = 4;
+	loadImage("dragon/dragon-rwing4");
+	loadImage("dragon/dragon-lwing4");
+	loadImage("dragon/dragon-body4");
+	loadImage("dragon/dragon-head4");
+}
+
+function loadSourDino(){
+	totalResources = 6;
+	loadImage("dino/dino-larm");
+	loadImage("dino/dino-lleg");
+	loadImage("dino/dino-body");
+	loadImage("dino/dino-rleg");
+	loadImage("dino/dino-rarm");
+	loadImage("dino/dino-head");
+}
+
+
+function loadMangoMonkey(){
+	totalResources = 5;
+	loadImage("monkey/monkey-tail");
+	loadImage("monkey/monkey-body");
+	loadImage("monkey/monkey-top");
+	loadImage("monkey/monkey-head");
+	loadImage("monkey/monkey-arm");
+}
+
+function loadCocoSeal(){
+	totalResources = 5;
+	loadImage("seal/seal-lear");
+	loadImage("seal/seal-rear");
+	loadImage("seal/seal-body");
+	loadImage("seal/seal-flippers");
+	loadImage("seal/seal-tail");
 }
 
 function loadImage(name) {
-	console.log("loaded");
 	images[name] = new Image();
 	images[name].onload = function() {
 		resourceLoaded();
@@ -215,32 +265,42 @@ function loadImage(name) {
 
 function resourceLoaded() {
 	resourcesLoaded += 1;
-	console.log(resourcesLoaded);
 	if(resourcesLoaded === totalResources) {
-		console.log("all loaded!");
-		handleImageLoad();
+		switch (spirit) {
+		case "dragon":
+			handleDragonLoad();
+			break;
+		case "dino":
+			handleDinoLoad();
+			break;
+		case "monkey":
+			handleMonkeyLoad();
+			break;
+		case "seal":
+			handleSealLoad();
+			break;
+		}
 	}
 }
 
-function handleImageLoad() {
-	console.log(images["dragon-rwing4"]);
-	dragonRWing = new createjs.Bitmap("images/dragon-rwing4.png");
+function handleDragonLoad() {
+	dragonRWing = new createjs.Bitmap("images/dragon/dragon-rwing4.png");
 	dragonRWing.x = 160;
 	dragonRWing.y = 220;
-	dragonRWing.regX = images["dragon-rwing4"].width/2;
-	dragonRWing.regY = images["dragon-rwing4"].height/2;
+	dragonRWing.regX = images["dragon/dragon-rwing4"].width/2;
+	dragonRWing.regY = images["dragon/dragon-rwing4"].height/2;
 
-	dragonBody = new createjs.Bitmap("images/dragon-body4.png");
+	dragonBody = new createjs.Bitmap("images/dragon/dragon-body4.png");
 	dragonBody.x = 10;
 	dragonBody.y = 170;
 
-	dragonLWing = new createjs.Bitmap("images/dragon-lwing4.png");
+	dragonLWing = new createjs.Bitmap("images/dragon/dragon-lwing4.png");
 	dragonLWing.x = 100;
 	dragonLWing.y = 210;
-	dragonLWing.regX = images["dragon-lwing4"].width/2;
-	dragonLWing.regY = images["dragon-lwing4"].height/2;
+	dragonLWing.regX = images["dragon/dragon-lwing4"].width/2;
+	dragonLWing.regY = images["dragon/dragon-lwing4"].height/2;
 
-	dragonHead = new createjs.Bitmap("images/dragon-head4.png");
+	dragonHead = new createjs.Bitmap("images/dragon/dragon-head4.png");
 	dragonHead.x = 30;
 	dragonHead.y = 20;
 
@@ -249,11 +309,109 @@ function handleImageLoad() {
 	stage.addChild(dragonBody);
 	stage.addChild(dragonHead);
 
-	createjs.Ticker.setFPS(30);
-	createjs.Ticker.on("tick", tick);
+	createjs.Ticker.setFPS(60);
+	createjs.Ticker.on("tick", dragonTick);
 }
 
-function tick(event){
+function handleDinoLoad(){
+	dinoLArm = new createjs.Bitmap("images/dino/dino-larm.png");
+	dinoLArm.x = -90;
+	dinoLArm.y = 20;
+
+	dinoLLeg = new createjs.Bitmap("images/dino/dino-lleg.png");
+	dinoLLeg.x = -65;
+	dinoLLeg.y = 95;
+
+	dinoBody = new createjs.Bitmap("images/dino/dino-body.png");
+	dinoBody.x = 0;
+	dinoBody.y = 30;
+
+	dinoRLeg = new createjs.Bitmap("images/dino/dino-rleg.png");
+	dinoRLeg.x = 10;
+	dinoRLeg.y = 95;
+
+	dinoRArm = new createjs.Bitmap("images/dino/dino-rarm.png");
+	dinoRArm.x = 22;
+	dinoRArm.y = 38;
+
+	dinoHead = new createjs.Bitmap("images/dino/dino-head.png");
+	dinoHead.x = -50;
+	dinoHead.y = -60;
+
+	stage.addChild(dinoLArm);
+	stage.addChild(dinoLLeg);
+	stage.addChild(dinoBody);
+	stage.addChild(dinoRLeg);
+	stage.addChild(dinoRArm);
+	stage.addChild(dinoHead);
+
+	createjs.Ticker.setFPS(60);
+	createjs.Ticker.on("tick", dinoTick);
+}
+
+function handleMonkeyLoad(){
+	monkeyTail = new createjs.Bitmap("images/monkey/monkey-tail.png");
+	monkeyTail.x = 130;
+	monkeyTail.y = 100;
+
+	monkeyBody = new createjs.Bitmap("images/monkey/monkey-body.png");
+	monkeyBody.x = 0;
+	monkeyBody.y = 150;
+
+	monkeyTop = new createjs.Bitmap("images/monkey/monkey-top.png");
+	monkeyTop.x = -10;
+	monkeyTop.y = -50;
+
+	monkeyHead = new createjs.Bitmap("images/monkey/monkey-head.png");
+	monkeyHead.x = 20;
+	monkeyHead.y = 40;
+
+	monkeyArm = new createjs.Bitmap("images/monkey/monkey-arm.png");
+	monkeyArm.x = 108;
+	monkeyArm.y = 65;
+
+	stage.addChild(monkeyTail);
+	stage.addChild(monkeyBody);
+	stage.addChild(monkeyTop);
+	stage.addChild(monkeyHead);
+	stage.addChild(monkeyArm);
+	
+	createjs.Ticker.setFPS(60);
+	createjs.Ticker.on("tick", monkeyTick);
+}
+
+function handleSealLoad(){
+	sealBody = new createjs.Bitmap("images/seal/seal-body.png");
+	sealBody.x = -30;
+	sealBody.y = 40;
+
+	sealREar = new createjs.Bitmap("images/seal/seal-rear.png");
+	sealREar.x = 125;
+	sealREar.y = -15;
+
+	sealLEar = new createjs.Bitmap("images/seal/seal-lear.png");
+	sealLEar.x = 55;
+	sealLEar.y = -15;
+
+	sealFlippers = new createjs.Bitmap("images/seal/seal-flippers.png");
+	sealFlippers.x = 110;
+	sealFlippers.y = 170;
+
+	sealTail = new createjs.Bitmap("images/seal/seal-tail.png");
+	sealTail.x = -52;
+	sealTail.y = 135;
+
+	stage.addChild(sealREar);
+	stage.addChild(sealLEar);
+	stage.addChild(sealBody);
+	stage.addChild(sealFlippers);
+	stage.addChild(sealTail);
+
+	createjs.Ticker.setFPS(60);
+	createjs.Ticker.on("tick", sealTick);
+}
+
+function dragonTick(event){
 	dragonRWing.rotation += rRotation;
 	if (dragonRWing.rotation < -10) {
 		rRotation = .5;
@@ -268,5 +426,17 @@ function tick(event){
 		lRotation = -.5;
 	}
 
+	stage.update(event);
+}
+
+function dinoTick(event){
+	stage.update(event);
+}
+
+function monkeyTick(event){
+	stage.update(event);
+}
+
+function sealTick(event){
 	stage.update(event);
 }
