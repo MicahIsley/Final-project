@@ -16,7 +16,7 @@
   "production": {
     "username": "rrlq4gzdiuqb3ipm",
     "password": "u58o199ki97vdtvr",
-    "database": "Spirit_heroku",
+    "database": "ipjuydh8t4e8828y",
     "host": "ffn96u87j5ogvehy.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
