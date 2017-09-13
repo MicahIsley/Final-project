@@ -59,8 +59,8 @@ passport.use(new LocalStrategy(
     		username: username
     	}
     }).then(function(results) {
-    	console.log(results);
 		var hash = results.dataValues.password;
+		var userId = results.dataValues.id;
     	bcrypt.compare(password, hash, function(err, response) {
     		if (response === true) {
     			return done(null, {user_id: 43});

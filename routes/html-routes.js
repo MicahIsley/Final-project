@@ -36,6 +36,12 @@ module.exports = function(app) {
 		}
 	));
 
+	app.get("/logout", function(req, res) {
+		req.logout();
+		req.session.destroy();
+		res.redirect("/");
+	})
+
 	app.post("/register", function(req, res, next) {
 		req.checkBody("username", "Username field cannot be empty.").notEmpty();
 		req.checkBody("email", "The email you entered is invalid, please try again.").isEmail();

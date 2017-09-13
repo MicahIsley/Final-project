@@ -66,7 +66,12 @@ function adjustHungerMeter() {
 
 $("#signIn").click(function(){
 	$("#buttons").hide();
-	$("#login").show();
+	$("#loginForm").show();
+});
+
+$("#signUp").click(function(){
+	$("#buttons").hide();
+	$("#registerForm").show();
 });
 
 $("#closeLoginWindow").click(function(){
