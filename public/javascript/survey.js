@@ -17,6 +17,7 @@
         });
     });
 }*/
+
 // Capture the form inputs 
 var sAnimals = {
     bear: ["bear", 4, 1, 4, 2, 3, 4, 5, 4, 1, 1],
@@ -31,6 +32,31 @@ var addedDiff = 0;
 var userDiffs = 40;
 var closestMatch;
 var currentUsername;
+var currentUserId;
+
+function getUserData() {
+    $.ajax('/user', {
+        credentials: "include",
+    })
+    .then((res) => {
+        currentUserId = res.user;
+        getCurrentUsername();
+        this.isAuthenticated = true
+        if (typeof cb === 'function') {
+            cb(res.json().user);
+        }
+    });
+};
+
+function getCurrentUsername(){
+    console.log(currentUserId);
+    $.get("/api/userinfo/" + currentUserId, function(data){
+        console.log(data.username);
+        currentUsername = data.username;
+    });
+};
+
+getUserData();
 
 $("#submit").on("click", function() {
     // Form validation
@@ -52,8 +78,7 @@ $("#submit").on("click", function() {
 
         // Create an object for the user's data
         var userData = {
-            username: $("#name").val().trim(),
-            password: $("#password").val().trim(),
+            username: currentUsername,
             q1: $("#q1").val(),
             q2: $("#q2").val(),
             q3: $("#q3").val(),
@@ -115,10 +140,11 @@ function assignSpiritAnimal(){
 function updateAnimalDatabase(){
     var assignedSpiritAnim = {
         username: currentUsername,
-        animal: closestMatch};
+        animal: closestMatch,
+        id: currentUserId};
     $.ajax({
         method: "PUT",
-        url: "/api/assignSpiritAnimal/",
+        url: "/api/assignSpiritAnimal",
         data: assignedSpiritAnim
     })
     .done(function() {

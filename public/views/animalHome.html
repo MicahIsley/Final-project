@@ -51,6 +51,13 @@
 						</div>
 					</div>
 					<div class="col-sm-6" id="body">
+						<div id="catDisplay">
+							<div id ="walk"></div>
+							<div id ="stopwalk"></div>
+
+							<button id= "startbtn">Start</button>
+							<button id= "stopbtn">Stop</button>
+						</div>
 						<canvas id="canvasDiv" width="400" height="400"></canvas>
 					</div>	
 				</div>
@@ -64,5 +71,21 @@
 		</div>
 	</body>
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<script>
+ 		$("#startbtn").click(function(){
+  			walk.style.animation = "walk-east 2.0s steps(3) infinite";
+		});
+ 
+		$("#stopbtn").click(function(){
+		 	walk.style.animation = "paused";  
+		});
+		(function($) {
+		  $(function() {
+		   $("stopwalk").click(function() {
+		    $("stopbtn").addClass("off");
+		   });
+		  });
+		})
+	</script>	 
 	<script type="text/javascript" src="javascript/logic.js"></script>
 </html>	

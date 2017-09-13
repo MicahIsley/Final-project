@@ -65,7 +65,7 @@ module.exports = function(app) {
 				}).then(function(results) {
 					const user_id = results.dataValues.id;
 					req.login(user_id, function(err){
-						res.redirect("/");
+						res.redirect("/survey");
 					});
 				});
 	

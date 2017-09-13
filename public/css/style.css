@@ -169,3 +169,22 @@ body {
 	margin-left: 0px;
 	margin-right: 0px;
 }
+
+#catDisplay {
+	display: none;
+}
+
+#walk {
+	 background:url(../images/cat.png);
+	 width: 325px;
+	 height: 307px;
+	 
+}
+ @-webkit-keyframes walk-east{
+     0% {background-position: 0px; }
+     100% {background-position: -1024px; }
+}
+ @keyframes walk-east {
+     0% {background-position: 0px; }
+     100% {background-position: -1024px; }
+ }

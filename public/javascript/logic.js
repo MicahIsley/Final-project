@@ -9,7 +9,9 @@ var dragonHead = 1;
 var resourcesLoaded = 0;
 var totalResources;
 var images = {};
-var spirit = "dragon";
+var spirit;
+var currentUserId;
+var currentUsername;
 
 //Game variables
 var hungryTime;
@@ -25,6 +27,37 @@ var optionMenuToggle = true;
 
 moment().format();
 
+function getUserData() {
+    $.ajax('/user', {
+        credentials: "include",
+    })
+    .then((res) => {
+        currentUserId = res.user;
+        getCurrentUsername();
+        this.isAuthenticated = true
+        if (typeof cb === 'function') {
+            cb(res.json().user);
+        }
+    });
+};
+
+function getCurrentUsername(){
+    console.log(currentUserId);
+    $.get("/api/userinfo/" + currentUserId, function(data){
+        console.log(data.username);
+        currentUsername = data.username;
+        findSpiritAnimal();
+    });
+};
+
+function findSpiritAnimal(){
+	$.get("/api/spiritAnimal/" + currentUsername, function(data){
+		spirit = data.animal;
+		init(spirit);
+	});
+}
+
+getUserData();
 // Game Logic
 function checkHungry() {
 	if(spicyDragon.hunger > 0){
@@ -63,7 +96,6 @@ function adjustHungerMeter() {
 }
 
 // Game Buttons
-
 $("#signIn").click(function(){
 	$("#buttons").hide();
 	$("#loginForm").show();
@@ -198,7 +230,6 @@ function foodItem(energy, flavor){
 
 // Spirit Animal Animation
 $(document).ready(function(){
-	init(spirit);
 });
 
 canvas = document.getElementById("canvasDiv");
@@ -218,7 +249,31 @@ function init(spirit) {
 		case "seal":
 			loadCocoSeal();
 			break;
+		case "dog":
+			loadDog();
+			break;
+		case "cat":
+			loadCat();
+			break;
+		case "bear":
+			loadBear();
+			break;
 	}
+}
+
+function loadCat(){
+	$("#catDisplay").show();
+	$("#canvasDiv").hide();
+}
+
+function loadDog(){
+	totalResources = 1;
+	loadImage("dog");
+}
+
+function loadBear(){
+	totalResources = 1;
+	loadImage("bear");
 }
 
 function loadSpicyDragon(){
@@ -281,6 +336,15 @@ function resourceLoaded() {
 			break;
 		case "seal":
 			handleSealLoad();
+			break;
+		case "dog":
+			handleDogLoad();
+			break;
+		case "cat":
+			handleCatLoad();
+			break;
+		case "bear":
+			handleBearLoad();
 			break;
 		}
 	}
@@ -414,6 +478,28 @@ function handleSealLoad(){
 	createjs.Ticker.on("tick", sealTick);
 }
 
+function handleDogLoad(){
+	dog = new createjs.Bitmap("images/dog.png");
+	dog.x = 0;
+	dog.y = 50;
+
+	stage.addChild(dog);
+
+	createjs.Ticker.setFPS(60);
+	createjs.Ticker.on("tick", dogTick);
+}
+
+function handleBearLoad(){
+	bear = new createjs.Bitmap("images/bear.png");
+	bear.x = 0;
+	bear.y = 50;
+
+	stage.addChild(bear);
+
+	createjs.Ticker.setFPS(60);
+	createjs.Ticker.on("tick", bearTick);
+}
+
 function dragonTick(event){
 	dragonRWing.rotation += rRotation;
 	if (dragonRWing.rotation < -10) {
@@ -441,5 +527,13 @@ function monkeyTick(event){
 }
 
 function sealTick(event){
+	stage.update(event);
+}
+
+function dogTick(event){
+	stage.update(event);
+}
+
+function bearTick(event){
 	stage.update(event);
 }
