@@ -18,15 +18,19 @@
   },
   "homepage": "https://github.com/MicahIsley/Final-project#readme",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
+    "express-mysql-session": "^1.2.2",
     "express-session": "^1.15.5",
+    "express-validator": "^4.1.1",
     "moment": "^2.18.1",
     "mysql": "^2.14.1",
     "mysql2": "^1.4.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "passport-local-sequelize": "^0.8.0",
     "path": "^0.12.7",
     "sequelize": "^4.8.0"
   }

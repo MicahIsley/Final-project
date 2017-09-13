@@ -30,7 +30,7 @@ var userResponseData = [];
 var addedDiff = 0;
 var userDiffs = 40;
 var closestMatch;
-var username = "test";
+var currentUsername;
 
 $("#submit").on("click", function() {
     // Form validation
@@ -49,10 +49,11 @@ $("#submit").on("click", function() {
     // If all required fields are filled
     if (validateForm() == true) {
         // Create scores array
-       
+
         // Create an object for the user's data
         var userData = {
             username: $("#name").val().trim(),
+            password: $("#password").val().trim(),
             q1: $("#q1").val(),
             q2: $("#q2").val(),
             q3: $("#q3").val(),
@@ -64,6 +65,7 @@ $("#submit").on("click", function() {
             q9: $("#q9").val(),
             q10: $("#q10").val()
         }
+        currentUsername = userData.username;
         // AJAX post the data to the friends API. 
         $.post("/api/survey", userData)
         .done(function(data) {
@@ -112,7 +114,7 @@ function assignSpiritAnimal(){
 
 function updateAnimalDatabase(){
     var assignedSpiritAnim = {
-        username: username,
+        username: currentUsername,
         animal: closestMatch};
     $.ajax({
         method: "PUT",

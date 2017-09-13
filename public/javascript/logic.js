@@ -76,11 +76,9 @@ $("#closeLoginWindow").click(function(){
 
 $("#signInFormButton").click(function(){
 	console.log("clicked");
-	var username = $("#username").val().trim();
+	username = $("#username").val().trim();
 	var password = $("#password").val().trim();
 	console.log(username, password);
-	var dataUsername;
-	var dataPassword;
 	$.get("/api/login/" + username + "/" + password, function(data) {
 		
 	});

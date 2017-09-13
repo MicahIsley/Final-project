@@ -11,17 +11,11 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
+      email: {
+        type: Sequelize.TEXT
+      },
       password: {
         type: Sequelize.TEXT
-      },
-      photo: {
-        type: Sequelize.TEXT
-      },
-      location: {
-        type: Sequelize.STRING
-      },
-      animal: {
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
