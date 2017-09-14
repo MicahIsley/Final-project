@@ -30,7 +30,7 @@ var sAnimals = {
     wolf: ["wolf", 5, 3, 3, 5, 5, 3, 3, 2, 2, 3]
 };
 
-var spiritAnimalList = [sAnimals.bear, sAnimals.cat, sAnimals.dog, sAnimals.dragon, sAnimals.dino, sAnimals.monkey, sAnimals.seal];
+var spiritAnimalList = [sAnimals.bear, sAnimals.cat, sAnimals.dog, sAnimals.dragon, sAnimals.dino, sAnimals.monkey, sAnimals.seal, sAnimal.wolf];
 var userResponseData = [];
 var addedDiff = 0;
 var userDiffs = 40;
