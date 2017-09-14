@@ -71,8 +71,7 @@ function getCurrentUsername(){
 
 function findSpiritAnimal(){
 	$.get("/api/spiritAnimal/" + currentUsername, function(data){
-		//spirit = data.animal;
-		spirit = "wolf";
+		spirit = data.animal;
 	}).done(function(){
 		init(spirit);
 		$("#animalSpecies").text(spirit.toUpperCase());
