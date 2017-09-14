@@ -49,7 +49,7 @@ module.exports = function(app) {
 	app.post("/register", function(req, res, next) {
 		req.checkBody("username", "Username field cannot be empty.").notEmpty();
 		req.checkBody("email", "The email you entered is invalid, please try again.").isEmail();
-		//req.checkBody("reEnterPassword", "Passwords do not match, please try again.").equals(req.body.password);
+		req.checkBody("passwordMatch", "Passwords do not match, please try again.").equals(req.body.password);
 		const errors = req.validationErrors();
 		if (errors) {
 			console.log(`errors: ${JSON.stringify(errors)}`);
@@ -66,11 +66,13 @@ module.exports = function(app) {
 				username: username,
 				email: email,
 				password: hash
-				}).then(function(results) {
+				}).then(function(error, results) {
 					const user_id = results.dataValues.id;
 					req.login(user_id, function(err){
 						res.redirect("/survey");
 					});
+				}).catch(function (err) {
+					res.redirect("/");
 				});
 	
 			});
