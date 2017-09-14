@@ -1,0 +1,7 @@
+{
+	"username": "root",
+	"password": "Password123",
+	"database": "spirit_animals_db",
+	"host": "localhost",
+	"dialect": "mysql"
+}

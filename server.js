@@ -12,7 +12,8 @@ var expressValidator = require("express-validator");
 var bcrypt = require("bcrypt");
 const saltRounds = 10;
 var User = require("./models/")["User"];
-var config = require("./config/config.json");
+var env = process.env.NODE_ENV || "development";
+var config = require("./config/" + env + ".json");
 
 // Sets up the Express App
 // =============================================================
@@ -32,11 +33,11 @@ app.use(cookieParser());
 app.use(express.static("public"));
 
 var options = {
-    host: "localhost",
+    host: config.host,
     port: 3306,
-    user: "root",
-    password: "Password123",
-    database: "spirit_animals_db"
+    user: config.username,
+    password: config.password,
+    database: config.database
 };
 
 var sessionStore = new MySQLStore(options);
