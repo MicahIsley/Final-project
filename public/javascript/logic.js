@@ -30,6 +30,8 @@ var sourDino = new SpiritAnimal(130, 100, 100, 5, 15);
 var normalCat = new SpiritAnimal(130, 100, 100, 5, 15);
 var normalDog = new SpiritAnimal(130, 100, 100, 5, 15);
 var normalBear = new SpiritAnimal(130, 100, 100, 5, 15);
+var cherryWolf = new SpiritAnimal(130, 100, 100, 5, 15);
+var cookieFerret = new SpiritAnimal(130, 100, 100, 5, 15);
 var apple = new foodItem(50, "juicy");
 var carrot = new foodItem(40, "crunchy");
 var cupcake = new foodItem(80, "sweet");
@@ -69,7 +71,8 @@ function getCurrentUsername(){
 
 function findSpiritAnimal(){
 	$.get("/api/spiritAnimal/" + currentUsername, function(data){
-		spirit = data.animal;
+		//spirit = data.animal;
+		spirit = "wolf";
 	}).done(function(){
 		init(spirit);
 		$("#animalSpecies").text(spirit.toUpperCase());
@@ -113,7 +116,7 @@ function checkHungry(animal) {
 		animal.hunger -= 1;
 		adjustHungerMeter();
 	}else{}
-	if(animal.hunger <= 140){
+	if(animal.hunger <= 100){
 		$("#animalThoughtBubble").text("I'm hungry, feeed meeeee!");
 	}
 	setTimeout("checkHungry(animal)", 1000);
@@ -135,11 +138,18 @@ function clearThoughtBubble() {
 }
 
 function adjustHungerMeter() {
-	var percentage = ((animal.hunger/150) * 100);
+	var percentage = ((animal.hunger/120) * 100);
 	if(percentage < 100){
 		$("#hungerMeterFill").css("width", percentage + "%");
 	} else{
 		$("#hungerMeterFill").css("width", "100%");
+	}
+	if(percentage >= 0 && percentage < 20){
+		$("#hungerMeterFill").css("background", "red");
+	}else if(percentage >=20 && percentage < 50){
+		$("#hungerMeterFill").css("background", "yellow");
+	}else{
+		$("#hungerMeterFill").css("background", "green");
 	}
 }
 
@@ -176,6 +186,7 @@ $("#food").click(function(){
 $(document).on("click", ".itemSlot", function(){
 	var foodItemQuantity = $(this, "span").text();
 	var foodItem = $(this).attr("id");
+	if(animal.hunger < 100){
 		switch (foodItem) {
 			case "apples":
 				apples -= 1;
@@ -190,22 +201,23 @@ $(document).on("click", ".itemSlot", function(){
 				steaks -= 1;
 				break;
 		}
-	console.log(foodItem);
-	animal.feed(foodItem);
-	console.log(animal.hunger);
-	var changeQuantity = {
-		apples: apples,
-		carrots: carrots,
-		cupcakes: cupcakes,
-		steaks: steaks}
-	$.ajax({
-		method: "PUT",
-		url: "/api/updateItems/" + currentUsername,
-		data: changeQuantity
-	})
-	.done(function() {
-		renderFoodItems();
-	});
+		console.log(foodItem);
+		animal.feed(foodItem);
+		console.log(animal.hunger);
+		var changeQuantity = {
+			apples: apples,
+			carrots: carrots,
+			cupcakes: cupcakes,
+			steaks: steaks}
+		$.ajax({
+			method: "PUT",
+			url: "/api/updateItems/" + currentUsername,
+			data: changeQuantity
+		})
+		.done(function() {
+			renderFoodItems();
+		});
+	}else{}
 });
 
 function renderFoodItems(){
@@ -310,6 +322,11 @@ function init(spirit) {
 		case "bear":
 			loadBear();
 			break;
+		case "wolf":
+			loadCherryWolf();
+			break;
+		case "ferret":
+			loadCookieFerret();
 	}
 }
 
@@ -365,6 +382,26 @@ function loadCocoSeal(){
 	loadImage("seal/seal-tail");
 }
 
+function loadCherryWolf(){
+	totalResources = 5;
+	loadImage("wolf/wolf-body");
+	loadImage("wolf/wolf-lear");
+	loadImage("wolf/wolf-nose");
+	loadImage("wolf/wolf-rear");
+	loadImage("wolf/wolf-tail");
+}
+
+function loadCookieFerret(){
+	totalResources = 7;
+	loadImage("ferret/ferret-backleg");
+	loadImage("ferret/ferret-body");
+	loadImage("ferret/ferret-frontleg1");
+	loadImage("ferret/ferret-frontleg2");
+	loadImage("ferret/ferret-head");
+	loadImage("ferret/ferret-lear");
+	loadImage("ferret/ferret-rear");
+}
+
 function loadImage(name) {
 	images[name] = new Image();
 	images[name].onload = function() {
@@ -398,9 +435,15 @@ function resourceLoaded() {
 		case "bear":
 			handleBearLoad();
 			break;
-		}
-	}
-}
+		case "wolf":
+			handleWolfLoad();
+			break;
+		case "ferret":
+			handleFerretLoad();
+			break;
+		};
+	};
+};
 
 function handleDragonLoad() {
 	dragonRWing = new createjs.Bitmap("images/dragon/dragon-rwing4.png");
@@ -430,7 +473,7 @@ function handleDragonLoad() {
 
 	createjs.Ticker.setFPS(60);
 	createjs.Ticker.on("tick", dragonTick);
-}
+};
 
 function handleDinoLoad(){
 	dinoLArm = new createjs.Bitmap("images/dino/dino-larm.png");
@@ -468,7 +511,7 @@ function handleDinoLoad(){
 
 	createjs.Ticker.setFPS(60);
 	createjs.Ticker.on("tick", dinoTick);
-}
+};
 
 function handleMonkeyLoad(){
 	monkeyTail = new createjs.Bitmap("images/monkey/monkey-tail.png");
@@ -499,7 +542,7 @@ function handleMonkeyLoad(){
 	
 	createjs.Ticker.setFPS(60);
 	createjs.Ticker.on("tick", monkeyTick);
-}
+};
 
 function handleSealLoad(){
 	sealBody = new createjs.Bitmap("images/seal/seal-body.png");
@@ -530,7 +573,7 @@ function handleSealLoad(){
 
 	createjs.Ticker.setFPS(60);
 	createjs.Ticker.on("tick", sealTick);
-}
+};
 
 function handleDogLoad(){
 	dog = new createjs.Bitmap("images/dog.png");
@@ -541,7 +584,7 @@ function handleDogLoad(){
 
 	createjs.Ticker.setFPS(60);
 	createjs.Ticker.on("tick", dogTick);
-}
+};
 
 function handleBearLoad(){
 	bear = new createjs.Bitmap("images/bear.png");
@@ -552,7 +595,38 @@ function handleBearLoad(){
 
 	createjs.Ticker.setFPS(60);
 	createjs.Ticker.on("tick", bearTick);
-}
+};
+
+function handleWolfLoad(){
+	wolfLEar = new createjs.Bitmap("images/wolf/wolf-lear.png");
+	wolfLEar.x = 0;
+	wolfLEar.y = 10;
+
+	wolfREar = new createjs.Bitmap("images/wolf/wolf-rear.png");
+	wolfREar.x = 80;
+	wolfREar.y = 10;
+
+	wolfTail = new createjs.Bitmap("images/wolf/wolf-tail.png");
+	wolfTail.x = 100;
+	wolfTail.y = 210;
+
+	wolfBody = new createjs.Bitmap("images/wolf/wolf-body.png");
+	wolfBody.x = -40;
+	wolfBody.y = 50;
+
+	wolfNose = new createjs.Bitmap("images/wolf/wolf-nose.png");
+	wolfNose.x = 45;
+	wolfNose.y = 70;
+
+	stage.addChild(wolfLEar);
+	stage.addChild(wolfREar);
+	stage.addChild(wolfTail);
+	stage.addChild(wolfBody);
+	stage.addChild(wolfNose);
+
+	createjs.Ticker.setFPS(60);
+	createjs.Ticker.on("tick", wolfTick);
+};
 
 function dragonTick(event){
 
@@ -561,17 +635,17 @@ function dragonTick(event){
 		dragonRRotation = .5;
 	} else if (dragonRWing.rotation > 10) {
 		dragonRRotation = -.5;
-	}
+	};
 
 	dragonLWing.rotation += dragonLRotation;
 	if (dragonLWing.rotation < -10) {
 		dragonLRotation = .5;
 	} else if (dragonLWing.rotation > 10) {
 		dragonLRotation = -.5;
-	}
+	};
 
 	stage.update(event);
-}
+};
 
 function dinoTick(event){
 	dinoWait ++;
@@ -586,14 +660,14 @@ function dinoTick(event){
 			dinoBounce = -5;
 		}else if(dinoHead.y > 120){
 			dinoBounce = 5;
-		}
+		};
 	}else if(dinoWait >= 65 && dinoWait < 110){
 		dinoHead.rotation -= dinoHeadRotation;
 		if (dinoHead.rotation < -5) {
 			dinoHeadRotation = -.5;
 		} else if (dinoHead.rotation > 5) {
 			dinoHeadRotation = .5;
-		}
+		};
 	}else if(dinoWait >= 100 && dinoWait < 250){
 		dinoLArm.y = 20;
 		dinoLLeg.y = 95;
@@ -603,22 +677,26 @@ function dinoTick(event){
 		dinoHead.y = 120;
 	}else{
 		dinoWait = 0;
-	}
+	};
 	stage.update(event);
-}
+};
 
 function monkeyTick(event){
 	stage.update(event);
-}
+};
 
 function sealTick(event){
 	stage.update(event);
-}
+};
 
 function dogTick(event){
 	stage.update(event);
-}
+};
 
 function bearTick(event){
 	stage.update(event);
-}
+};
+
+function wolfTick(event){
+	stage.update(event);
+};

@@ -29,6 +29,10 @@ module.exports = function(app) {
 		res.sendFile(path.join(__dirname + "/../views/training.html"));
 	});
 
+	app.get("/interactJS", function(req, res) {
+		res.sendFile(path.join(__dirname + "/../public/interactJS/interactJS.html"));
+	});
+
 	app.post("/login", passport.authenticate(
 		"local", {
 			successRedirect: "/animalHome",
