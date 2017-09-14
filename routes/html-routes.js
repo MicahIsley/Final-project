@@ -71,13 +71,9 @@ module.exports = function(app) {
 					req.login(user_id, function(err){
 						res.redirect("/survey");
 					});
-				}).catch(function (err) {
-					res.redirect("/");
 				});
-	
 			});
 		}
-
 	});
 
 	passport.serializeUser(function(user_id, done) {
