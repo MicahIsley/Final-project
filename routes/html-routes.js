@@ -17,15 +17,15 @@ module.exports = function(app) {
 		res.sendFile(path.join(__dirname + "/../public/views/animalHome.html"));
 	});
 
-	app.get("/forage", function(req, res) {
+	app.get("/forage", authenticationMiddleware(), function(req, res) {
 		res.sendFile(path.join(__dirname + "/../public/views/forage.html"));
 	});
 
-	app.get("/survey", function(req, res) {
+	app.get("/survey", authenticationMiddleware(), function(req, res) {
 		res.sendFile(path.join(__dirname + "/../public/views/survey.html"));
 	});
 
-	app.get("/training", function(req, res) {
+	app.get("/training", authenticationMiddleware(), function(req, res) {
 		res.sendFile(path.join(__dirname + "/../views/training.html"));
 	});
 

@@ -18,7 +18,11 @@ var hungryTime;
 var currentTime;
 var spicyDragon = new SpiritAnimal(150, 100, 100, 6, 15);
 var mangoMonkey = new SpiritAnimal(120, 100, 100, 5, 15);
-var seal = new SpiritAnimal(130, 100, 100, 5, 15);
+var cocoSeal = new SpiritAnimal(130, 100, 100, 5, 15);
+var sourDino = new SpiritAnimal(130, 100, 100, 5, 15);
+var normalCat = new SpiritAnimal(130, 100, 100, 5, 15);
+var normalDog = new SpiritAnimal(130, 100, 100, 5, 15);
+var normalBear = new SpiritAnimal(130, 100, 100, 5, 15);
 var apple = new foodItem(50, "juicy");
 var carrot = new foodItem(40, "crunchy");
 var cupcake = new foodItem(80, "sweet");
@@ -29,6 +33,7 @@ var apples;
 var carrots;
 var cupcakes;
 var steaks;
+var animal;
 
 moment().format();
 
@@ -61,6 +66,7 @@ function findSpiritAnimal(){
 	}).done(function(){
 		init(spirit);
 		$("#animalSpecies").text(spirit.toUpperCase());
+		assignConstructor(spirit);
 	});
 };
 
@@ -68,24 +74,49 @@ getUserData();
 
 // Game Logic
 
+function assignConstructor(spirit) {
+	switch (spirit) {
+		case "dragon":
+			animal = spicyDragon;
+			break;
+		case "monkey":
+			animal = mangoMonkey;
+			break;
+		case "seal":
+			animal = cocoSeal;
+			break;
+		case "dino":
+			animal = sourDino;
+			break;
+		case "cat":
+			animal = normalCat;
+			break;
+		case "dog":
+			animal = normalDog;
+			break;
+		case "bear":
+			animal = normalBear;
+			break;
+	}
+	checkHungry(animal);
+}
 
-function checkHungry() {
-	if(spicyDragon.hunger > 0){
-		spicyDragon.hunger -= 1;
+function checkHungry(animal) {
+	if(animal.hunger > 0){
+		animal.hunger -= 1;
 		adjustHungerMeter();
 	}else{}
-	if(spicyDragon.hunger <= 140){
+	if(animal.hunger <= 140){
 		$("#animalThoughtBubble").text("I'm hungry, feeed meeeee!");
 	}
-	setTimeout("checkHungry()", 1000);
+	setTimeout("checkHungry(animal)", 1000);
 }
-checkHungry();
 
 function checkBored() {
-	if(spicyDragon.sleep > 0){
-		spicyDragon.sleep -= 1;
+	if(animal.sleep > 0){
+		animal.sleep -= 1;
 	} else{}
-	if(spicyDragon.sleep === 0){
+	if(animal.sleep === 0){
 		$("#")
 	}
 }
@@ -97,7 +128,7 @@ function clearThoughtBubble() {
 }
 
 function adjustHungerMeter() {
-	var percentage = ((spicyDragon.hunger/150) * 100);
+	var percentage = ((animal.hunger/150) * 100);
 	if(percentage < 100){
 		$("#hungerMeterFill").css("width", percentage + "%");
 	} else{
@@ -153,8 +184,8 @@ $(document).on("click", ".itemSlot", function(){
 				break;
 		}
 	console.log(foodItem);
-	spicyDragon.feed(foodItem);
-	console.log(spicyDragon.hunger);
+	animal.feed(foodItem);
+	console.log(animal.hunger);
 	var changeQuantity = {
 		apples: apples,
 		carrots: carrots,
@@ -198,18 +229,18 @@ function SpiritAnimal(hunger, sleep, bored, intelligence, happiness){
 	this.intelligence = intelligence;
 
 	this.feed = function(food){
-		if(this.hunger < 140){
+		if(this.hunger < 100){
 			switch (food) {
-				case "apple":
+				case "apples":
 					this.hunger += 40;
 					break;
-				case "carrot":
+				case "carrots":
 					this.hunger += 30;
 					break;
-				case "cupcake":
+				case "cupcakes":
 					this.hunger += 60;
 					break;
-				case "steak":
+				case "steaks":
 					this.hunger += 90;
 					break;
 			}
@@ -217,7 +248,7 @@ function SpiritAnimal(hunger, sleep, bored, intelligence, happiness){
 			$("#animalThoughtBubble").text("Thank you!");
 			clearThoughtBubble();
 			adjustHungerMeter();
-		}else if(this.hunger >= 140){
+		}else if(this.hunger >= 100){
 			$("#animalThoughtBubble").text("No thanks! I'm full.");
 			clearThoughtBubble();
 		}
