@@ -15,23 +15,13 @@ module.exports = function(app) {
 		});
 	});
 
-	app.get("/api/spiritAnimal/:username", function(req, res) {
-		User.findOne({
-			where: {
-				username: req.params.username
-			}
-		}).then(function(results) {
-			res.json(results);
-		});
-	});
-
-	app.get("/api/userinfo/:id", function(req, res) {
-		User.findOne({
-			where: {
-				id: req.params.id
-			}
-		}).then(function(results) {
-			res.json(results);
+	app.post("/api/newitems/:username", function(req, res) {
+		Items.create({
+			username: req.params.username,
+			apples: 20,
+			carrots: 20,
+			cupcakes: 5,
+			steaks: 5
 		});
 	});
 
@@ -48,11 +38,21 @@ module.exports = function(app) {
 		});
 	});
 
-	app.post("/api/survey", function(req, res) {
-		Survey.create({
-			username: req.body.username,
-			q1: req.body.q1, q2: req.body.q2, q3: req.body.q3, q4: req.body.q4, q5: req.body.q5,
-			q6: req.body.q6, q7: req.body.q7, q8: req.body.q8, q9: req.body.q9, q10: req.body.q10
+	app.get("/api/spiritAnimal/:username", function(req, res) {
+		User.findOne({
+			where: {
+				username: req.params.username
+			}
+		}).then(function(results) {
+			res.json(results);
+		});
+	});
+
+	app.get("/api/userinfo/:id", function(req, res) {
+		User.findOne({
+			where: {
+				id: req.params.id
+			}
 		}).then(function(results) {
 			res.json(results);
 		});
@@ -79,6 +79,16 @@ module.exports = function(app) {
 				username: req.params.username
 			}
 		}).then(function(results) {
+		});
+	});
+
+	app.post("/api/survey", function(req, res) {
+		Survey.create({
+			username: req.body.username,
+			q1: req.body.q1, q2: req.body.q2, q3: req.body.q3, q4: req.body.q4, q5: req.body.q5,
+			q6: req.body.q6, q7: req.body.q7, q8: req.body.q8, q9: req.body.q9, q10: req.body.q10
+		}).then(function(results) {
+			res.json(results);
 		});
 	});
 

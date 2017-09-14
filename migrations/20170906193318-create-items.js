@@ -11,13 +11,16 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
-      item: {
-        type: Sequelize.STRING
+      apples: {
+        type: Sequelize.INTEGER
       },
-      type: {
-        type: Sequelize.STRING
+      carrots: {
+        type: Sequelize.INTEGER
       },
-      quantity: {
+      cupcakes: {
+        type: Sequelize.INTEGER
+      },
+      steaks: {
         type: Sequelize.INTEGER
       },
       createdAt: {

@@ -2,8 +2,10 @@
 module.exports = function(sequelize, DataTypes) {
   var Items = sequelize.define('Items', {
     username: DataTypes.STRING,
-    item: DataTypes.STRING,
-    type: DataTypes.STRING,
+    apples: DataTypes.INTEGER,
+    carrots: DataTypes.INTEGER,
+    cupcakes: DataTypes.INTEGER,
+    steaks: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER
   }, {
     classMethods: {

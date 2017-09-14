@@ -47,6 +47,7 @@ function getCurrentUsername(){
         console.log(data.username);
         currentUsername = data.username;
         findSpiritAnimal();
+        createFood();
     });
 };
 
@@ -56,7 +57,13 @@ function findSpiritAnimal(){
 		init(spirit);
 		$("#animalSpecies").text(spirit.charAt[0].toUpperCase());
 	});
-}
+};
+
+function createFood(){
+	$.post("/api/newitems/" + currentUsername, function(data){
+		console.log(data);
+	});
+};
 
 getUserData();
 
