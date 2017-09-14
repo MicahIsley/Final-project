@@ -22,16 +22,20 @@ module.exports = function(app) {
 			carrots: 20,
 			cupcakes: 5,
 			steaks: 5
+		}).then(function(results) {
+			res.json(results);
 		});
 	});
 
-	app.put("/api/:username/:item", function(req, res) {
+	app.put("/api/updateItems/:username", function(req, res) {
 		Items.update({
-			quantity: req.body.quantity
+			apples: req.body.apples,
+			carrots: req.body.carrots,
+			cupcakes: req.body.cupcakes,
+			steaks: req.body.steaks
 		}, {
 			where: {
-				username: req.body.username,
-				item: req.body.item
+				username: req.params.username
 			}
 		}).then(function(result) {
 			res.json(result);

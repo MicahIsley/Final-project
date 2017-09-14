@@ -18,12 +18,17 @@ var hungryTime;
 var currentTime;
 var spicyDragon = new SpiritAnimal(150, 100, 100, 6, 15);
 var mangoMonkey = new SpiritAnimal(120, 100, 100, 5, 15);
+var seal = new SpiritAnimal(130, 100, 100, 5, 15);
 var apple = new foodItem(50, "juicy");
 var carrot = new foodItem(40, "crunchy");
 var cupcake = new foodItem(80, "sweet");
 var steak = new foodItem(100, "chewy");
 var username = "test";
 var optionMenuToggle = true;
+var apples;
+var carrots;
+var cupcakes;
+var steaks;
 
 moment().format();
 
@@ -47,22 +52,15 @@ function getCurrentUsername(){
         console.log(data.username);
         currentUsername = data.username;
         findSpiritAnimal();
-        createFood();
     });
 };
 
 function findSpiritAnimal(){
 	$.get("/api/spiritAnimal/" + currentUsername, function(data){
 		spirit = data.animal;
+	}).done(function(){
 		init(spirit);
-		console.log(spirit.charAt[0].toUpperCase());
-		$("#animalSpecies").text(spirit.charAt[0].toUpperCase());
-	});
-};
-
-function createFood(){
-	$.post("/api/newitems/" + currentUsername, function(data){
-		console.log(data);
+		$("#animalSpecies").text(spirit.toUpperCase());
 	});
 };
 
@@ -123,16 +121,6 @@ $("#closeLoginWindow").click(function(){
 	$("#login").hide();
 });
 
-$("#signInFormButton").click(function(){
-	console.log("clicked");
-	username = $("#username").val().trim();
-	var password = $("#password").val().trim();
-	console.log(username, password);
-	$.get("/api/login/" + username + "/" + password, function(data) {
-		
-	});
-});
-
 $("#options").click(function(){
 	if(optionMenuToggle === true){
 		$("#menuOptions").show()
@@ -147,19 +135,34 @@ $("#food").click(function(){
 	renderFoodItems();
 });
 
-$(document).on("click", ".itemIcon", function(){
-	var foodItemQuantity = $(this).attr("id");
-	var splitId = foodItemQuantity.split("/");
-	var newQuantity = splitId[1] -1;
-	spicyDragon.feed(splitId[0]);
+$(document).on("click", ".itemSlot", function(){
+	var foodItemQuantity = $(this, "span").text();
+	var foodItem = $(this).attr("id");
+		switch (foodItem) {
+			case "apples":
+				apples -= 1;
+				break;
+			case "carrots":
+				carrots -= 1;
+				break;
+			case "cupcakes":
+				cupcakes -= 1;
+				break;
+			case "steaks":
+				steaks -= 1;
+				break;
+		}
+	console.log(foodItem);
+	spicyDragon.feed(foodItem);
 	console.log(spicyDragon.hunger);
 	var changeQuantity = {
-		username: "test",
-		item: splitId[0],
-		quantity: newQuantity}
+		apples: apples,
+		carrots: carrots,
+		cupcakes: cupcakes,
+		steaks: steaks}
 	$.ajax({
 		method: "PUT",
-		url: "/api/test/" + splitId[0],
+		url: "/api/updateItems/" + currentUsername,
 		data: changeQuantity
 	})
 	.done(function() {
@@ -169,18 +172,17 @@ $(document).on("click", ".itemIcon", function(){
 
 function renderFoodItems(){
 	$("#itemSlotRow").show();
-	for(i=0; i < 5; i++){
-		$("#itemSlot" + i).empty();
-	}
-	$.get("api/" + username + "/items", function(data) {
-		for(i=0; i < data.length; i++){
-			var div = $("<div>");
-			div.append("<img class='itemIcon' id='" + data[i].item + "/" + data[i].quantity + "' src='/images/" + data[i].item + ".png' alt='Responsive image'>");
-			div.append("<span>" + data[i].quantity + "</span>");
-			$("#itemSlot" + i).append(div);
-		}
+	$.get("api/" + currentUsername + "/items", function(data) {
+		apples = data[0].apples;
+		carrots = data[0].carrots;
+		cupcakes = data[0].cupcakes;
+		steaks = data[0].steaks;
+		$("#itemSlot0").text(apples);
+		$("#itemSlot1").text(carrots);
+		$("#itemSlot2").text(cupcakes);
+		$("#itemSlot3").text(steaks);
 	});
-}
+};
 
 $(".hideButton").click(function(){
 	var hideThis = $(this).parent().attr("id");

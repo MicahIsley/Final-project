@@ -59,6 +59,12 @@ function getCurrentUsername(){
     });
 };
 
+function createFood(){
+    $.post("/api/newitems/" + currentUsername, function(data){
+        console.log(data);
+    });
+};
+
 getUserData();
 
 $("#submit").on("click", function() {
@@ -154,5 +160,6 @@ function updateAnimalDatabase(){
         console.log("something");
         $("#meetYourSpiritAnimal").show();
         $("#survey").hide();
+        createFood();
     });
 }
