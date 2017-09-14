@@ -66,7 +66,7 @@ module.exports = function(app) {
 				username: username,
 				email: email,
 				password: hash
-				}).then(function(error, results) {
+				}).then(function(results) {
 					const user_id = results.dataValues.id;
 					req.login(user_id, function(err){
 						res.redirect("/survey");
@@ -74,6 +74,7 @@ module.exports = function(app) {
 				});
 			});
 		}
+
 	});
 
 	passport.serializeUser(function(user_id, done) {
