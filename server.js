@@ -12,6 +12,7 @@ var expressValidator = require("express-validator");
 var bcrypt = require("bcrypt");
 const saltRounds = 10;
 var User = require("./models/")["User"];
+var config = require("./config/config.json");
 
 // Sets up the Express App
 // =============================================================
@@ -31,11 +32,11 @@ app.use(cookieParser());
 app.use(express.static("public"));
 
 var options = {
-    host: "localhost",
+    host: "ffn96u87j5ogvehy.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     port: 3306,
-    user: "root",
-    password: "Password123",
-    database: "spirit_animals_db"
+    user: "rrlq4gzdiuqb3ipm",
+    password: "u58o199ki97vdtvr",
+    database: "ipjuydh8t4e8828y"
 };
 
 var sessionStore = new MySQLStore(options);

@@ -23,10 +23,13 @@ var sAnimals = {
     bear: ["bear", 4, 1, 4, 2, 3, 4, 5, 4, 1, 1],
     cat: ["cat", 3, 2, 2, 5, 4, 5, 4, 1, 3, 2],
     dog: ["dog", 3, 5, 3, 3, 3, 4, 2, 4, 5, 5],
-    dragon: ["dragon", 5, 1, 5, 5, 1, 2, 5, 1, 3, 1]
+    dragon: ["dragon", 5, 1, 5, 5, 5, 2, 5, 1, 3, 1],
+    dino: ["dino", 4, 2, 5, 5, 5, 4, 4, 1, 2, 1],
+    monkey: ["monkey", 2, 5, 3, 1, 2, 5, 2, 3, 5, 5],
+    seal: ["seal", 1, 4, 4, 2, 1, 3, 1, 5, 4, 4]
 };
 
-var spiritAnimalList = [sAnimals.bear, sAnimals.cat, sAnimals.dog, sAnimals.dragon];
+var spiritAnimalList = [sAnimals.bear, sAnimals.cat, sAnimals.dog, sAnimals.dragon, sAnimals.dino, sAnimals.monkey, sAnimals.seal];
 var userResponseData = [];
 var addedDiff = 0;
 var userDiffs = 40;
