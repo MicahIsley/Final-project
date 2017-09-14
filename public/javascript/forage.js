@@ -1,11 +1,11 @@
 var randomItemsArray = ["apple", "carrot", "cupcake", "steak", "rock", "empty", "spider"];
 var guessesLeft = 4;
 var foundItemArray = [];
-var apple;
-var carrot;
-var cupcake;
-var steak;
-var username = "test";
+var apples;
+var carrots;
+var cupcakes;
+var steaks;
+var currentUsername;
 var currentQuantity;
 
 
@@ -16,6 +16,21 @@ $(".itemBush").click(function(){
 		$("#item" + thisBush).show();
 		var foundItem = $("#item" + thisBush).children().attr("class");
 		foundItemArray.push(foundItem);
+		switch (foundItem) {
+			case "apple":
+				apples ++;
+				break;
+			case "carrot":
+				carrots ++;
+				break;
+			case "cupcake":
+				cupcakes ++;
+				break;
+			case "steak":
+				steaks ++;
+				break;
+		}
+		console.log(apples, carrots, cupcakes, steaks);
 		guessesLeft -= 1;
 		displayNumberGuesses();
 		if(guessesLeft === 0){
@@ -32,8 +47,7 @@ function randomizeItems() {
 	for(i=1; i < 13; i++){
 		var randomNumber = Math.floor(Math.random() * 7);
 		var randomItem = randomItemsArray[randomNumber];
-		console.log("<img src='" + randomItem + ".png'>");
-		$("#item" + i).append("<img src='images/" + randomItem + ".png' class='" + randomItem + "'>");
+		$("#item" + i).append("<img src='images/food/" + randomItem + ".png' class='" + randomItem + "'>");
 	}
 }
 
@@ -42,44 +56,31 @@ function displayForageResults(){
 		var li = $("<li>");
 		li.append(foundItemArray[i]);
 		$("#foundItemList").append(li);
-		switch (foundItemArray[i]) {
-			case "apple":
-				currentQuantity = apple;
-				break;
-			case "carrot":
-				currentQuantity = carrot;
-				break;
-			case "cupcake":
-				currentQuantity = cupcake;
-				break;
-			case "steak":
-				currentQuantity = steak;
-				break;
-		}
-		if(foundItemArray[i] === "apple" || "carrot" || "cupcake" || "steak"){
-			var changeQuantity = {
-			username: "test",
-			item: foundItemArray[i],
-			quantity: currentQuantity + 1}
-			$.ajax({
-				method: "PUT",
-				url: "/api/test/" + foundItemArray[0],
-				data: changeQuantity
-			})
-			.done(function() {
-			});
-		}else{}
-	}
-}
+		var changeQuantity = {
+		username: currentUsername,
+		apples: apples,
+		carrots: carrots,
+		cupcakes: cupcakes,
+		steaks: steaks}
+		$.ajax({
+			method: "PUT",
+			url: "/api/updateItems/" + currentUsername,
+			data: changeQuantity
+		})
+		.done(function() {
+			console.log("items updated");
+		});
+	};
+};
 
 function getItemQuantity(){
-	$.get("api/" + username + "/items", function(data) {
-		apple = data[0].quantity;
-		carrot = data[1].quantity;
-		cupcake = data[2].quantity;
-		steak = data[3].quantity;
+	$.get("api/" + currentUsername + "/items", function(data) {
+		apples = data[0].apples;
+		carrots = data[0].carrots;
+		cupcakes = data[0].cupcakes;
+		steaks = data[0].steaks;
 	}).done(function(){
-		console.log(apple, carrot, cupcake, steak);
+		console.log(apples, carrots, cupcakes, steaks);
 	});
 }
 
@@ -87,6 +88,29 @@ function displayNumberGuesses() {
 	$("#numberRemaining").text(guessesLeft);
 }
 
+function getUserData() {
+    $.ajax('/user', {
+        credentials: "include",
+    })
+    .then((res) => {
+        currentUserId = res.user;
+        getCurrentUsername();
+        this.isAuthenticated = true
+        if (typeof cb === 'function') {
+            cb(res.json().user);
+        }
+    });
+};
+
+function getCurrentUsername(){
+    console.log(currentUserId);
+    $.get("/api/userinfo/" + currentUserId, function(data){
+        console.log(data.username);
+        currentUsername = data.username;
+        getItemQuantity();
+    });
+};
+
 displayNumberGuesses();
 randomizeItems();
-getItemQuantity();
+getUserData();

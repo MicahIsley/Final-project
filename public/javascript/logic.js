@@ -3,9 +3,16 @@
 //EaselJS animation variables
 var canvas;
 var stage;
-var rRotation = -.5;
-var lRotation = .5;
-var dragonHead = 1;
+//Dragon Animation Variables
+
+var dragonRRotation = -.5;
+var dragonLRotation = .5;
+
+//Dino Animation Variables
+var dinoBounce = 5;
+var dinoWait = 0;
+var dinoHeadRotation = .5;
+//var dragonHead = 1;
 var resourcesLoaded = 0;
 var totalResources;
 var images = {};
@@ -447,8 +454,10 @@ function handleDinoLoad(){
 	dinoRArm.y = 38;
 
 	dinoHead = new createjs.Bitmap("images/dino/dino-head.png");
-	dinoHead.x = -50;
-	dinoHead.y = -60;
+	dinoHead.x = 130;
+	dinoHead.y = 120;
+	dinoHead.regX = images["dino/dino-head"].width/2;
+	dinoHead.regY = images["dino/dino-head"].height/2;
 
 	stage.addChild(dinoLArm);
 	stage.addChild(dinoLLeg);
@@ -546,24 +555,55 @@ function handleBearLoad(){
 }
 
 function dragonTick(event){
-	dragonRWing.rotation += rRotation;
+
+	dragonRWing.rotation += dragonRRotation;
 	if (dragonRWing.rotation < -10) {
-		rRotation = .5;
+		dragonRRotation = .5;
 	} else if (dragonRWing.rotation > 10) {
-		rRotation = -.5;
+		dragonRRotation = -.5;
 	}
 
-	dragonLWing.rotation += lRotation;
+	dragonLWing.rotation += dragonLRotation;
 	if (dragonLWing.rotation < -10) {
-		lRotation = .5;
+		dragonLRotation = .5;
 	} else if (dragonLWing.rotation > 10) {
-		lRotation = -.5;
+		dragonLRotation = -.5;
 	}
 
 	stage.update(event);
 }
 
 function dinoTick(event){
+	dinoWait ++;
+	if(dinoWait < 65){
+		dinoHead.y -= dinoBounce;
+		dinoBody.y -= dinoBounce;
+		dinoRArm.y -= dinoBounce;
+		dinoLArm.y -= dinoBounce;
+		dinoLLeg.y -= dinoBounce;
+		dinoRLeg.y -= dinoBounce;
+		if(dinoHead.y < 90){
+			dinoBounce = -5;
+		}else if(dinoHead.y > 120){
+			dinoBounce = 5;
+		}
+	}else if(dinoWait >= 65 && dinoWait < 110){
+		dinoHead.rotation -= dinoHeadRotation;
+		if (dinoHead.rotation < -5) {
+			dinoHeadRotation = -.5;
+		} else if (dinoHead.rotation > 5) {
+			dinoHeadRotation = .5;
+		}
+	}else if(dinoWait >= 100 && dinoWait < 250){
+		dinoLArm.y = 20;
+		dinoLLeg.y = 95;
+		dinoBody.y = 30;
+		dinoRLeg.y = 95;
+		dinoRArm.y = 38;
+		dinoHead.y = 120;
+	}else{
+		dinoWait = 0;
+	}
 	stage.update(event);
 }
 
