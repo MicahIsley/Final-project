@@ -54,11 +54,15 @@ function findSpiritAnimal(){
 	$.get("/api/spiritAnimal/" + currentUsername, function(data){
 		spirit = data.animal;
 		init(spirit);
+		$("#animalSpecies").text(spirit.charAt[0].toUpperCase());
 	});
 }
 
 getUserData();
+
 // Game Logic
+
+
 function checkHungry() {
 	if(spicyDragon.hunger > 0){
 		spicyDragon.hunger -= 1;
