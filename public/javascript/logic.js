@@ -55,6 +55,7 @@ function findSpiritAnimal(){
 	$.get("/api/spiritAnimal/" + currentUsername, function(data){
 		spirit = data.animal;
 		init(spirit);
+		console.log(spirit.charAt[0].toUpperCase());
 		$("#animalSpecies").text(spirit.charAt[0].toUpperCase());
 	});
 };
