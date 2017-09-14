@@ -163,9 +163,14 @@ $("#signUp").click(function(){
 	$("#registerForm").show();
 });
 
-$("#closeLoginWindow").click(function(){
+$("#closeLoginButton").click(function(){
+	$("#loginForm").hide();
 	$("#buttons").show();
-	$("#login").hide();
+});
+
+$("#closeRegisterButton").click(function(){
+	$("#registerForm").hide();
+	$("#buttons").show();
 });
 
 $("#options").click(function(){

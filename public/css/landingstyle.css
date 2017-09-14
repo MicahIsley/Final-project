@@ -41,7 +41,13 @@
 }
 
 #registerForm {
+  background: tan;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 10px;
   display: none;
+  padding: 5px;
 }
 
 .form-control {
