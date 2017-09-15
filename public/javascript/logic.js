@@ -30,15 +30,15 @@ var currentUsername;
 //Game variables
 var hungryTime;
 var currentTime;
-var spicyDragon = new SpiritAnimal(150, 100, 100, 6, 15);
-var mangoMonkey = new SpiritAnimal(120, 100, 100, 5, 15);
-var cocoSeal = new SpiritAnimal(130, 100, 100, 5, 15);
-var sourDino = new SpiritAnimal(130, 100, 100, 5, 15);
-var normalCat = new SpiritAnimal(130, 100, 100, 5, 15);
-var normalDog = new SpiritAnimal(130, 100, 100, 5, 15);
-var normalBear = new SpiritAnimal(130, 100, 100, 5, 15);
-var cherryWolf = new SpiritAnimal(130, 100, 100, 5, 15);
-var cookieFerret = new SpiritAnimal(130, 100, 100, 5, 15);
+var spicyDragon = new SpiritAnimal("dragon", "spicy", 150, 100, 100, 6, 15);
+var mangoMonkey = new SpiritAnimal("monkey", "mango", 120, 100, 100, 5, 15);
+var cocoSeal = new SpiritAnimal("seal", "coco", 130, 100, 100, 5, 15);
+var sourDino = new SpiritAnimal("dino", "sour", 130, 100, 100, 5, 15);
+var normalCat = new SpiritAnimal("cat", "normal", 130, 100, 100, 5, 15);
+var normalDog = new SpiritAnimal("dog", "normal", 130, 100, 100, 5, 15);
+var normalBear = new SpiritAnimal("bear", "normal", 130, 100, 100, 5, 15);
+var cherryWolf = new SpiritAnimal("wolf", "cherry", 130, 100, 100, 5, 15);
+var cookieFerret = new SpiritAnimal("ferret", "cookie", 130, 100, 100, 5, 15);
 var apple = new foodItem(50, "juicy");
 var carrot = new foodItem(40, "crunchy");
 var cupcake = new foodItem(80, "sweet");
@@ -78,7 +78,8 @@ function getCurrentUsername(){
 
 function findSpiritAnimal(){
 	$.get("/api/spiritAnimal/" + currentUsername, function(data){
-		spirit = data.animal;
+		//spirit = data.animal;
+		spirit = "ferret";
 	}).done(function(){
 		init(spirit);
 		$("#animalSpecies").text(spirit.toUpperCase());
@@ -115,6 +116,9 @@ function assignConstructor(spirit) {
 			break;
 		case "wolf":
 			animal = cherryWolf;
+		case "ferret":
+			animal = cookieFerret;
+			break;
 	}
 	checkHungry(animal);
 }
@@ -162,26 +166,6 @@ function adjustHungerMeter() {
 }
 
 // Game Buttons
-$("#signIn").click(function(){
-	$("#buttons").hide();
-	$("#loginForm").show();
-});
-
-$("#signUp").click(function(){
-	$("#buttons").hide();
-	$("#registerForm").show();
-});
-
-$("#closeLoginButton").click(function(){
-	$("#loginForm").hide();
-	$("#buttons").show();
-});
-
-$("#closeRegisterButton").click(function(){
-	$("#registerForm").hide();
-	$("#buttons").show();
-});
-
 $("#options").click(function(){
 	if(optionMenuToggle === true){
 		$("#menuOptions").show()
@@ -254,7 +238,9 @@ $(".hideButton").click(function(){
 
 // Spirit Animal constructor
 
-function SpiritAnimal(hunger, sleep, bored, intelligence, happiness){
+function SpiritAnimal(species, variety, hunger, sleep, bored, intelligence, happiness){
+	this.species = species;
+	this.variety = variety;
 	this.hunger = hunger;
 	this.sleep = sleep;
 	this.bored = bored;
@@ -264,16 +250,16 @@ function SpiritAnimal(hunger, sleep, bored, intelligence, happiness){
 		if(this.hunger < 100){
 			switch (food) {
 				case "apples":
-					this.hunger += 40;
+					this.hunger += apple.energy;
 					break;
 				case "carrots":
-					this.hunger += 30;
+					this.hunger += carrot.energy;
 					break;
 				case "cupcakes":
-					this.hunger += 60;
+					this.hunger += cupcake.energy;
 					break;
 				case "steaks":
-					this.hunger += 90;
+					this.hunger += steak.energy;
 					break;
 			}
 			console.log(" Delicious! New hunger level: " + this.hunger);
@@ -647,6 +633,47 @@ function handleWolfLoad(){
 	createjs.Ticker.on("tick", wolfTick);
 };
 
+function handleFerretLoad(){
+	ferretFrontLeg1 = new createjs.Bitmap("images/ferret/ferret-frontleg1.png");
+	ferretFrontLeg1.x = 160;
+	ferretFrontLeg1.y = 120;
+
+	ferretREar = new createjs.Bitmap("images/ferret/ferret-rear.png");
+	ferretREar.x = 180;
+	ferretREar.y = -5;
+
+	ferretLEar = new createjs.Bitmap("images/ferret/ferret-lear.png");
+	ferretLEar.x = 100;
+	ferretLEar.y = -10;
+
+	ferretBody = new createjs.Bitmap("images/ferret/ferret-body.png");
+	ferretBody.x = -60;
+	ferretBody.y = 0;
+
+	ferretBackLeg = new createjs.Bitmap("images/ferret/ferret-backleg.png");
+	ferretBackLeg.x = 30;
+	ferretBackLeg.y = 180;
+
+	ferretFrontLeg2 = new createjs.Bitmap("images/ferret/ferret-frontleg2.png");
+	ferretFrontLeg2.x = 130;
+	ferretFrontLeg2.y = 140;
+
+	ferretHead = new createjs.Bitmap("images/ferret/ferret-head.png");
+	ferretHead.x = 140;
+	ferretHead.y = 40;
+
+	stage.addChild(ferretFrontLeg1);
+	stage.addChild(ferretREar);
+	stage.addChild(ferretLEar);
+	stage.addChild(ferretBody);
+	stage.addChild(ferretBackLeg);
+	stage.addChild(ferretFrontLeg2);
+	stage.addChild(ferretHead);
+
+	createjs.Ticker.setFPS(60);
+	createjs.Ticker.on("tick", ferretTick);
+};
+
 function dragonTick(event){
 
 	dragonRWing.rotation += dragonRRotation;
@@ -743,5 +770,9 @@ function wolfTick(event){
 	}else{
 		dinoWait = 0;
 	}
+	stage.update(event);
+};
+
+function ferretTick(event){
 	stage.update(event);
 };

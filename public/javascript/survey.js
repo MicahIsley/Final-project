@@ -27,10 +27,11 @@ var sAnimals = {
     dino: ["dino", 4, 2, 5, 5, 5, 4, 4, 1, 2, 1],
     monkey: ["monkey", 2, 5, 3, 1, 2, 5, 2, 3, 5, 5],
     seal: ["seal", 1, 4, 4, 2, 1, 3, 1, 5, 4, 4],
-    wolf: ["wolf", 5, 3, 3, 5, 5, 3, 3, 2, 2, 3]
+    wolf: ["wolf", 5, 3, 3, 5, 5, 3, 3, 2, 2, 3],
+    ferret: ["ferret", 2, 4, 2, 4, 3, 5, 1, 3, 1, 3]
 };
 
-var spiritAnimalList = [sAnimals.bear, sAnimals.cat, sAnimals.dog, sAnimals.dragon, sAnimals.dino, sAnimals.monkey, sAnimals.seal, sAnimals.wolf];
+var spiritAnimalList = [sAnimals.bear, sAnimals.cat, sAnimals.dog, sAnimals.dragon, sAnimals.dino, sAnimals.monkey, sAnimals.seal, sAnimals.wolf, sAnimals.ferret];
 var userResponseData = [];
 var addedDiff = 0;
 var userDiffs = 40;

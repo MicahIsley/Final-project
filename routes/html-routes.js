@@ -71,6 +71,9 @@ module.exports = function(app) {
 					req.login(user_id, function(err){
 						res.redirect("/survey");
 					});
+				}).catch(function (err) {
+					console.log(err);
+					res.redirect("/");
 				});
 			});
 		}
