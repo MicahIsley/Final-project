@@ -81,7 +81,6 @@ function findSpiritAnimal(){
 		spirit = data.animal;
 	}).done(function(){
 		init(spirit);
-		$("#animalSpecies").text(spirit.toUpperCase());
 		assignConstructor(spirit);
 	});
 };
@@ -119,8 +118,16 @@ function assignConstructor(spirit) {
 			animal = cookieFerret;
 			break;
 	}
+	displayAnimalName(animal);
 	checkHungry(animal);
 }
+
+function displayAnimalName(animal){
+	var animalSpecies = animal.species;
+	var animalVariety = animal.variety;
+	$("#animalSpecies").text(animalSpecies.charAt(0).toUpperCase() + animalSpecies.slice(1));
+	$("#levelAndVariety").text("Lvl.1 " + animalVariety.charAt(0).toUpperCase() + animalVariety.slice(1));
+};
 
 function checkHungry(animal) {
 	if(animal.hunger > 0){
@@ -131,7 +138,7 @@ function checkHungry(animal) {
 		$("#animalThoughtBubble").text("I'm hungry, feeed meeeee!");
 	}
 	setTimeout("checkHungry(animal)", 1000);
-}
+};
 
 function checkBored() {
 	if(animal.sleep > 0){
@@ -140,13 +147,13 @@ function checkBored() {
 	if(animal.sleep === 0){
 		$("#")
 	}
-}
+};
 
 function clearThoughtBubble() {
 	setTimeout(function(){
 		$("#animalThoughtBubble").text(" ");
 	}, 5000);
-}
+};
 
 function adjustHungerMeter() {
 	var percentage = ((animal.hunger/120) * 100);
@@ -162,7 +169,7 @@ function adjustHungerMeter() {
 	}else{
 		$("#hungerMeterFill").css("background", "green");
 	}
-}
+};
 
 // Game Buttons
 $("#options").click(function(){

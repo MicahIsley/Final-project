@@ -53,23 +53,27 @@ function randomizeItems() {
 
 function displayForageResults(){
 	for(i=0; i < foundItemArray.length; i++){
-		var li = $("<li>");
-		li.append(foundItemArray[i]);
-		$("#foundItemList").append(li);
-		var changeQuantity = {
-		username: currentUsername,
-		apples: apples,
-		carrots: carrots,
-		cupcakes: cupcakes,
-		steaks: steaks}
-		$.ajax({
-			method: "PUT",
-			url: "/api/updateItems/" + currentUsername,
-			data: changeQuantity
-		})
-		.done(function() {
-			console.log("items updated");
-		});
+		if(foundItemArray[i] === "empty"){
+			console.log("you get nothing");
+		}else{
+			var li = $("<li>");
+			li.append(foundItemArray[i]);
+			$("#foundItemList").append(li);
+			var changeQuantity = {
+			username: currentUsername,
+			apples: apples,
+			carrots: carrots,
+			cupcakes: cupcakes,
+			steaks: steaks}
+			$.ajax({
+				method: "PUT",
+				url: "/api/updateItems/" + currentUsername,
+				data: changeQuantity
+			})
+			.done(function() {
+				console.log("items updated");
+			});
+		}
 	};
 };
 
