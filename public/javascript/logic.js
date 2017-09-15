@@ -12,7 +12,14 @@ var dragonLRotation = .5;
 var dinoBounce = 5;
 var dinoWait = 0;
 var dinoHeadRotation = .5;
-//var dragonHead = 1;
+//Monkey Animation Variables
+var monkeyArmRotation = .5;
+//Seal Animation Variables
+var sealTailRotation = .3;
+//Wolf Animation Variables
+var wolfNoseBounce = .5;
+var wolfTailRotation = .5;
+
 var resourcesLoaded = 0;
 var totalResources;
 var images = {};
@@ -106,6 +113,8 @@ function assignConstructor(spirit) {
 		case "bear":
 			animal = normalBear;
 			break;
+		case "wolf":
+			animal = cherryWolf;
 	}
 	checkHungry(animal);
 }
@@ -535,8 +544,10 @@ function handleMonkeyLoad(){
 	monkeyHead.y = 40;
 
 	monkeyArm = new createjs.Bitmap("images/monkey/monkey-arm.png");
-	monkeyArm.x = 108;
-	monkeyArm.y = 65;
+	monkeyArm.x = 206;
+	monkeyArm.y = 170;
+	monkeyArm.regX = images["monkey/monkey-arm"].width/2;
+	monkeyArm.regY = images["monkey/monkey-arm"].height/2;
 
 	stage.addChild(monkeyTail);
 	stage.addChild(monkeyBody);
@@ -550,24 +561,26 @@ function handleMonkeyLoad(){
 
 function handleSealLoad(){
 	sealBody = new createjs.Bitmap("images/seal/seal-body.png");
-	sealBody.x = -30;
+	sealBody.x = 30;
 	sealBody.y = 40;
 
 	sealREar = new createjs.Bitmap("images/seal/seal-rear.png");
-	sealREar.x = 125;
+	sealREar.x = 185;
 	sealREar.y = -15;
 
 	sealLEar = new createjs.Bitmap("images/seal/seal-lear.png");
-	sealLEar.x = 55;
+	sealLEar.x = 115;
 	sealLEar.y = -15;
 
 	sealFlippers = new createjs.Bitmap("images/seal/seal-flippers.png");
-	sealFlippers.x = 110;
+	sealFlippers.x = 170;
 	sealFlippers.y = 170;
 
 	sealTail = new createjs.Bitmap("images/seal/seal-tail.png");
-	sealTail.x = -52;
-	sealTail.y = 135;
+	sealTail.x = 105;
+	sealTail.y = 230;
+	sealTail.regX = images["seal/seal-tail"].width/2;
+	sealTail.regY = images["seal/seal-tail"].height/2;
 
 	stage.addChild(sealREar);
 	stage.addChild(sealLEar);
@@ -603,23 +616,25 @@ function handleBearLoad(){
 
 function handleWolfLoad(){
 	wolfLEar = new createjs.Bitmap("images/wolf/wolf-lear.png");
-	wolfLEar.x = 0;
+	wolfLEar.x = 80;
 	wolfLEar.y = 10;
 
 	wolfREar = new createjs.Bitmap("images/wolf/wolf-rear.png");
-	wolfREar.x = 80;
+	wolfREar.x = 160;
 	wolfREar.y = 10;
 
 	wolfTail = new createjs.Bitmap("images/wolf/wolf-tail.png");
-	wolfTail.x = 100;
-	wolfTail.y = 210;
+	wolfTail.x = 275;
+	wolfTail.y = 310;
+	wolfTail.regX = images["wolf/wolf-tail"].width/2;
+	wolfTail.regY = images["wolf/wolf-tail"].height/2;
 
 	wolfBody = new createjs.Bitmap("images/wolf/wolf-body.png");
-	wolfBody.x = -40;
+	wolfBody.x = 40;
 	wolfBody.y = 50;
 
 	wolfNose = new createjs.Bitmap("images/wolf/wolf-nose.png");
-	wolfNose.x = 45;
+	wolfNose.x = 127;
 	wolfNose.y = 70;
 
 	stage.addChild(wolfLEar);
@@ -690,6 +705,12 @@ function monkeyTick(event){
 };
 
 function sealTick(event){
+	sealTail.rotation += sealTailRotation;
+	if (sealTail.rotation < -10) {
+		sealTailRotation = .3;
+	} else if (sealTail.rotation > 10) {
+		sealTailRotation = -.3;
+	};
 	stage.update(event);
 };
 
@@ -702,5 +723,25 @@ function bearTick(event){
 };
 
 function wolfTick(event){
+	dinoWait ++;
+	if(dinoWait < 40){
+		wolfNose.y -= wolfNoseBounce;
+		if(wolfNose.y < 68){
+			wolfNoseBounce = -.5;
+		}else if(wolfNose.y > 72){
+			wolfNoseBounce = .5;
+		}
+	}else if(dinoWait >= 40 && dinoWait < 130){
+		wolfTail.rotation += wolfTailRotation;
+		if (wolfTail.rotation < -10) {
+			wolfTailRotation = .5;
+		} else if (wolfTail.rotation > 10) {
+			wolfTailRotation = -.5;
+		};
+	}else if(dinoWait < 200){
+		wolfNose.y = 70;
+	}else{
+		dinoWait = 0;
+	}
 	stage.update(event);
 };
