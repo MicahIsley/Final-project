@@ -1,4 +1,4 @@
-# Final-project
+# Spirit-app
 
 Welcome to Spirit! The website where you discover your spirit animal and then bond with it through various games and activities.
 
