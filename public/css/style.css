@@ -1,5 +1,5 @@
 body {
-	background: #4a300f;
+	background: #2d2d2d;
 }
 
 #mainTitle {
@@ -8,20 +8,24 @@ body {
 	font-stretch: expanded;
 }
 #animalArea {
-	background: url("http://www.misucell.com/data/out/9/IMG_359630.png");
-	background: lightgrey;
 	background: url("https://wallpapercave.com/wp/NRZITrZ.jpg");
 	background-position: 20% 50%;
+	border-radius: 5px;
+	box-shadow: 0px 0px 20px white;
+	font-family: 'Averia Sans Libre', cursive;
 }
 
 #actionButtonsRow {
-	background: tan;
+	background: #afafaf;
 	padding-left: 33%;
+	border-width: 5px 0px 0px 0px;
+	border-style: solid;
+	border-color: black;
 }
 
 .actionButton {
 	color: black;
-	background: green;
+	background: #a7c5e6;
 	text-align: center;
 	padding-top: 10px;
 	height: 50px;
@@ -31,8 +35,10 @@ body {
 	font-size: 18px;
 	margin: 5px 15px 5px 15px;
 	border-style: solid;
-	border-color: black;
+	border-color: #1998ff;
 	border-width: 3px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px white;
 }
 
 .actionButton:hover {
@@ -47,8 +53,8 @@ body {
 	border-style: solid;
 	border-radius: 5px;
 	height: 50px;
-	width: 260px;
-	margin-left: 36%;
+	width: 270px;
+	margin-left: 37%;
 	text-align: center;
 	font-size: 18px;
 }
@@ -65,11 +71,13 @@ body {
 }
 
 #hungerMeter {
+	background: black;
 	height: 30px;
 	width: 75%;
 	border-style: solid;
 	border-color: black;
 	border-width: 3px;
+	border-radius: 4px;
 }
 
 #hungerMeterFill {
@@ -79,15 +87,18 @@ body {
 }
 
 #options {
+	color: white;
 	text-align: right;
 	font-size: 35px;
 	margin-right: 10px;
+	margin-top: 20px;
 }
 
 .glyphicon {
 	border-style: solid;
-	border-color: black;
+	border-color: grey;
 	border-width: 2px;
+	border-radius: 5px;
 	padding-top: 1px;
 	padding-left: 1px;
 }
@@ -98,7 +109,6 @@ body {
 
 #animalStats {
 	margin-top: 20px;
-	height: 120px;
 }
 
 #animalTitle {
@@ -187,4 +197,31 @@ body {
  @keyframes walk-east {
      0% {background-position: 0px; }
      100% {background-position: -1024px; }
+ }
+
+ @media only screen and (max-width: 500px) {
+
+	#animalThoughtBubble{
+		margin-left: 10%;
+		margin-top: 5px;
+	}
+
+	#energySection {
+		margin-left: 40px;
+	}
+
+	#animalStats {
+		margin-top: 0px;
+	}
+
+	#actionButtonsRow {
+		padding-left: 0px;
+	}
+
+	.actionButton {
+		font-size: 18px;
+		width: 90px;
+		margin: 3px;
+	}
+
  }

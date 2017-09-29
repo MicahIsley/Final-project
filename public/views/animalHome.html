@@ -9,31 +9,34 @@
 	    <script>
 	      moment().format();
 	    </script>
+	    <link href="https://fonts.googleapis.com/css?family=Averia+Sans+Libre" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
-				<h1 id="mainTitle"><img src="images/S-logo.png">pirit</h1>
-			</div>
-			<div class="row" id="animalArea">
-				<div class="row" id="animalStats">
-					<div class="col-sm-4" id="animalTitle">
-						<div id="animalSpecies"></div>
-							<div id="levelAndVariety">Lvl.1 Spicy</div>
-					</div>
-					<div class="col-sm-4">
-						<div id="energyTitle">Energy</div>
-						<div id="hungerMeter">
-							<div id="hungerMeterFill"></div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div id="options"><span class="glyphicon glyphicon-cog"></span></div>
+				<div class="col-xs-8">
+					<h1 id="mainTitle"><img src="images/S-logo.png">pirit</h1>
+				</div>
+				<div class="col-xs-3">
+					<div id="options"><span class="glyphicon glyphicon-cog"></span></div>
 						<div id="menuOptions">
 							<div class="singleOption">Profile</div>
 							<div class="singleOption">Options</div>
 							<a href="/logout"><div class="singleOption">Logout</div></a>
+						</div>
+				</div>
+			</div>
+			<div class="row" id="animalArea">
+				<div class="row" id="animalStats">
+					<div class="col-sm-3" id="animalTitle">
+						<div id="animalSpecies"></div>
+							<div id="levelAndVariety">Lvl.1 Spicy</div>
+					</div>
+					<div class="col-sm-4 col-sm-offset-1" id="energySection">
+						<div id="energyTitle">Energy</div>
+						<div id="hungerMeter">
+							<div id="hungerMeterFill"></div>
 						</div>
 					</div>
 				</div>
@@ -61,10 +64,10 @@
 					</div>	
 				</div>
 				<div class="row" id="actionButtonsRow">
-					<div class="actionButton" id="food">Food</div>
-					<div class="actionButton" id="play">Play</div>
-					<a href="./forage"><div class="actionButton" id="forage">Forage</div></a>
-					<div class="actionButton" id="trade">Trade</div>
+					<div class="col-xs-3 actionButton" id="food">Food</div>
+					<div class="col-xs-3 actionButton" id="play">Play</div>
+					<a href="./forage"><div class="col-xs-3 actionButton" id="forage">Forage</div></a>
+					<div class="col-xs-3 actionButton" id="trade">Trade</div>
 				</div>
 			</div>
 		</div>

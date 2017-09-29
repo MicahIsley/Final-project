@@ -9,6 +9,7 @@
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/landingstyle.css">
    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Averia+Sans+Libre" rel="stylesheet">
 </head>
    <body>
       <!-- Background Carousel -->
@@ -36,44 +37,49 @@
             <button class="btn btn-success submit" id="signIn" type="submit">Sign In!</button>
           </div>
           <div class="row">
-            <button class="btn btn-success submit" id="signUp" type="submit">Sign Up!</button>
+            <button class="btn btn-success submit" id="signUp" type="submit">Register</button>
           </div>
         </div>
 
-        <form method="POST" action="/login" id="loginForm">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" class="form-control" placeholder="Username">
-          </div>
-          <div class="form-group">
-            <label for="username">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Password">
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn btn-danger" id="closeLoginButton">Close</button>
-        </form>
+        <div id="loginForm">
+          <div class="formTitle">Sign In</div>
+          <form method="POST" action="/login">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" name="username" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label for="username">Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="btn btn-danger" id="closeLoginButton">Cancel</button>
+          </form>
+        </div>
 
-        <form method="POST" action="/register" id="registerForm">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" class="form-control" placeholder="Username">
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" class="form-control" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <label for="passoword">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Password">
-          </div>
-          <div class="form-group">
-            <label for="username">Re-Enter Password</label>
-            <input type="password" name="passwordMatch" class="form-control" placeholder="Password">
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn btn-danger" id="closeRegisterButton">Close</button>
-        </form>
-
+        <div id="registerForm">
+          <div class="formTitle">Register</div>
+          <form method="POST" action="/register">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" name="username" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="passoword">Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="username">Re-Enter Password</label>
+              <input type="password" name="passwordMatch" class="form-control" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="btn btn-danger" id="closeRegisterButton">Cancel</button>
+          </form>
+        </div>
       </div>
 
 
