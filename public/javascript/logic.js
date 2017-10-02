@@ -50,6 +50,7 @@ var carrots;
 var cupcakes;
 var steaks;
 var animal;
+var foodMenu = false;
 
 moment().format();
 
@@ -183,7 +184,14 @@ $("#options").click(function(){
 });
 
 $("#food").click(function(){
-	renderFoodItems();
+	if(foodMenu === false){
+		$("#itemSection").show();
+		renderFoodItems();
+		foodMenu = true;
+	}else if(foodMenu === true){
+		$("#itemSection").hide();
+		foodMenu = false;
+	}
 });
 
 $(document).on("click", ".itemSlot", function(){
@@ -224,7 +232,6 @@ $(document).on("click", ".itemSlot", function(){
 });
 
 function renderFoodItems(){
-	$("#itemSlotRow").show();
 	$.get("api/" + currentUsername + "/items", function(data) {
 		apples = data[0].apples;
 		carrots = data[0].carrots;
